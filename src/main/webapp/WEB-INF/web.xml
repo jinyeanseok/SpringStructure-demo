@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<resource-ref> <!-- context 추가 후 web.xml에 resource-ref를 동록해야함 -->
+		<description></description>
+		<res-ref-name>jndi/sample</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<listener> <!-- Spring에서 어떤 이벤트를 받기 위해서 대기하는 객체 -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name> <!-- contextLoader가 <param-value>의 위치에 있는 설정 파일을 읽어들이겠다는 것이고 그 파일이 dispatcher라는 
+				서블릿으로 만들겠다는 것 -->
+			<param-value>/WEB-INF/config/springmvc/*.xml</param-value> <!-- DispatcherServlet의 위치 -->
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>/</url-pattern> <!-- 모든 요청은 /로 받으며 servlet 이름은 action으로 하겠다. -->
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name> <!-- dispatcher-servlet말고도 datasource나 transcation 등도 읽기 위해 -->
+		<param-value>classpath:spring/com/*.xml</param-value> <!-- context-datasource.xml의 위치 -->
+	</context-param>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
