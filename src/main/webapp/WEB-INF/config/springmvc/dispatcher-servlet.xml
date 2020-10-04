@@ -10,7 +10,9 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
     
-	<context:component-scan base-package="net.eduSample" /> <!-- net.eduSample로 시작하는 패키지를 모두 등록 -->
+	 <!-- net.eduSample로 시작하는 패키지를 모두 등록 -->
+	<!-- <context:component-scan base-package="net.eduSample" /> -->
+	<context:component-scan base-package="net.eduSample.*" />
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">

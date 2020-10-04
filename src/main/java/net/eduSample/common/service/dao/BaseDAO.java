@@ -9,7 +9,8 @@ public interface BaseDAO {
 	public List<?> selectList(String id, Object object);
 	
 	public int insert(String id, Object object);
-
+//	public int insert(String id);
+	
 	public int update(String id, Object object);
 	
 	public int delete(String id, Object object);
