@@ -74,13 +74,13 @@
             <div class="form-group">
               <div class="form-label-group">
                 <input type="text" id="identification" name="identification" class="form-control" placeholder="ID" required="required" autofocus="autofocus">
-                <!-- <label for="identification">ID</label> -->
+                <label for="identification">ID</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
                 <input type="password" id="password" class="form-control" placeholder="Password" required="required">
-                <!-- <label for="password">Password</label> -->
+                <label for="password">Password</label>
               </div>
             </div>
             <div class="form-group">
