@@ -6,7 +6,7 @@
 
 	<resource-ref> <!-- context 추가 후 web.xml에 resource-ref를 동록해야함 -->
 		<description></description>
-		<res-ref-name>jndi/sample</res-ref-name>
+		<res-ref-name>jndi/edusample</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
@@ -51,6 +51,7 @@
 	</context-param>
 
 	<welcome-file-list>
+		<welcome-file>dashBoard.jsp</welcome-file>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

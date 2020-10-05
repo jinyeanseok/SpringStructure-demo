@@ -39,7 +39,7 @@
          UserDatabaseRealm to authenticate users
     -->
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
-    <Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jndi/sample" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost/studydb?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;serverTimezone=UTC" username="root" validationInterval="30000" validationQuery="SELECT 1"/>
+    <Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jndi/edusample" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost/studydb?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;serverTimezone=UTC" username="root" validationInterval="30000" validationQuery="SELECT 1"/>
     <!-- DBCP(DataBase Connection Pool) - 톰캣 서버가 커넥션 풀에 미리 생성해 놓은 Connection 객체를 가져다가 사용 -->
     <!-- 생성과 자원해제를 반복하는것이 아닌 재사용 -->
   </GlobalNamingResources>

@@ -21,7 +21,7 @@
 					url:'proc',
 					type:'POST',
 					data:{'identification':userId, 'password':userPwd},
-				//	dataType:'json',
+					dataType:'json',
 					contentType:'application/x-www-form-urlencoded; charset=UTF-8',
 					//contentType:'application/json',
 					success : function(login) {
