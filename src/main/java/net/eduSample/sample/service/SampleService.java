@@ -10,4 +10,7 @@ public interface SampleService {
 	
 	public UserVO login(UserVO vo) throws Exception;
 	
+	public void modify(UserVO vo) throws Exception;
+	
+	public void delete(UserVO vo) throws Exception;
 }

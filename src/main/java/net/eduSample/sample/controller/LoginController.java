@@ -30,6 +30,12 @@ public class LoginController {
 		return "pages/login";
 	}
 	
+	@RequestMapping(value="/pwdFind", method=RequestMethod.GET) // href="/login/pwdFind"시  pages/forgot-password로 이동
+	public String password() {
+		return "pages/forgot-password";
+	}
+	
+	
 //	@RequestMapping(value="/proc", method=RequestMethod.POST)
 //	@ResponseBody
 //	public Map<String, Boolean> login(UserVO user) {
@@ -79,12 +85,8 @@ public class LoginController {
 		Map<String, Boolean> map = new HashedMap<String, Boolean>();
 		try {
 			HttpSession session = req.getSession();
-			
 			UserVO login = sampleService.login(vo);
 			boolean result = false;
-//			Map<String, Boolean> map = new HashedMap<String, Boolean>();
-//			if(vo.equals(login) && vo.getIdentification().equals(login.getIdentification()) && vo.getPassword().equals(login.getPassword())) {
-			
 			if(login.getPassword().equals(vo.getPassword())) {
 				result = true;
 				session.setAttribute("user", login);
@@ -92,14 +94,6 @@ public class LoginController {
 				result = false;
 				session.setAttribute("user", null);
 			}
-			
-//			if(vo.getIdentification().equals(login.getIdentification()) && vo.getPassword().equals(login.getPassword())) {
-//				result = true;
-//				session.setAttribute("user", login);
-//			} else {
-//				result = false;
-//				session.setAttribute("user", null);
-//			}
 			map.put("result", result);
 			return map;
 		} catch(Exception e) {

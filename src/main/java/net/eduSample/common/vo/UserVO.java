@@ -8,6 +8,15 @@ public class UserVO {
 	private String password;
 	private String name;
 	private Date create_date;
+	private int verify;
+
+	public int getVerify() {
+		return verify;
+	}
+
+	public void setVerify(int verify) {
+		this.verify = verify;
+	}
 
 	public String getIdentification() {
 		return identification;

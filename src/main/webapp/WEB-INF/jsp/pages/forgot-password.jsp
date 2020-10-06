@@ -14,13 +14,13 @@
     <title>SB Admin - Forgot Password</title>
 
     <!-- Bootstrap core CSS-->
-    <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link href="resources/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/resources/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
-    <link href="resources/assets/css/sb-admin.css" rel="stylesheet">
+    <link href="/resources/assets/css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -37,15 +37,15 @@
           <form>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Enter email address" required="required" autofocus="autofocus">
-                <label for="inputEmail">Enter email address</label>
+                <input type="text" id="identification" class="form-control" placeholder="Enter ID" required="required" autofocus="autofocus">
+                <label for="identification">Enter ID</label>
               </div>
             </div>
             <a class="btn btn-primary btn-block" href="login.html">Reset Password</a>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="register.html">Register an Account</a>
-            <a class="d-block small" href="login.html">Login Page</a>
+            <a class="d-block small mt-3" href="/sample/register">Register an Account</a>
+            <a class="d-block small" href="/login/form">Login Page</a>
           </div>
         </div>
       </div>

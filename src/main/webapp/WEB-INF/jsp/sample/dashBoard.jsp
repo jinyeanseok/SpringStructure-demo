@@ -32,24 +32,28 @@
 	var result = "${result}";
 	if(result === "modifyOK") {
 		alert("비밀번호가 변경되었습니다.");
+	} else if(result === "registerOK") {
+		alert("회원가입이 완료되었습니다.");
+	} else if(result === "deleteOK") {
+		alert("회원삭제가 완료되었습니다.");
 	}
 </script>
 
 <!-- Bootstrap core CSS-->
-<link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom fonts for this template-->
-<link href="resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link href="/static/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- Page level plugin CSS-->
 <link
-	href="resources/assets/vendor/datatables/dataTables.bootstrap4.css"
+	href="/static/assets/vendor/datatables/dataTables.bootstrap4.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="resources/assets/css/sb-admin.css" rel="stylesheet">
+<link href="/static/assets/css/sb-admin.css" rel="stylesheet">
 
 
 </head>
@@ -67,9 +71,8 @@
 
 	<div class="center">
 		<c:if test="${user != null }">
-      	     ${user.identification}님 안녕하세요
+      	     ${user.name}님 안녕하세요
       </c:if>
-      ${result}
 	</div>
 
 	<!-- Navbar Search -->
@@ -114,19 +117,34 @@
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#">Something else here</a>
 			</div></li>
-		<li class="nav-item dropdown no-arrow"><a
-			class="nav-link dropdown-toggle" href="#" id="userDropdown"
+			
+		<li class="nav-item dropdown no-arrow">
+		
+		<!-- <button class="nav-link dropdown-toggle" data-toggle="dropdown" id="userDropdown" aria-haspopup="true"
+			aria-expanded="false" ></button> -->
+		<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false"> <i class="fas fa-user-circle fa-fw"></i>
-		</a>
+			aria-expanded="false">
+			<i class="fas fa-user-circle fa-fw"></i>
+		 </a>
+		
 			<div class="dropdown-menu dropdown-menu-right"
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="#">Settings</a> <a
 					class="dropdown-item" href="#">Activity Log</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#" data-toggle="modal"
+				<a class="dropdown-item" href="/sample/register">register</a>
+				<a class="dropdown-item" href="/login/form">login</a>
+				<c:if test="${user != null }">
+					<a class="dropdown-item" href="#" data-toggle="modal"
 					data-target="#logoutModal">Logout</a> 
-				<a class="dropdown-item" href="/sample/modify">modify</a>
+					<a class="dropdown-item" href="/sample/modify">modify</a>
+					<a class="dropdown-item" href="/sample/delete">delete</a>
+					<c:if test="${user.verify == 9}">
+						<a class="dropdown-item" href="/admin/index">admin</a>					
+					</c:if>
+				</c:if>
+				
 				<!-- 회원정보 변경추가 -->
 			</div></li>
 	</ul>
@@ -783,33 +801,33 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="/login/form">Logout</a>
+					<a class="btn btn-primary" href="/sample/logout">Logout</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="resources/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="/static/assets/vendor/jquery/jquery.min.js"></script>
 	<script
-		src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
 	<script
-		src="resources/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+		src="/static/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Page level plugin JavaScript-->
-	<script src="resources/assets/vendor/chart.js/Chart.min.js"></script>
-	<script src="resources/assets/vendor/datatables/jquery.dataTables.js"></script>
+	<script src="/static/assets/vendor/chart.js/Chart.min.js"></script>
+	<script src="/static/assets/vendor/datatables/jquery.dataTables.js"></script>
 	<script
-		src="resources/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+		src="/static/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="resources/assets/js/sb-admin.min.js"></script>
+	<script src="/static/assets/js/sb-admin.min.js"></script>
 
 	<!-- Demo scripts for this page-->
-	<script src="resources/assets/js/demo/datatables-demo.js"></script>
-	<script src="resources/assets/js/demo/chart-area-demo.js"></script>
+	<script src="/static/assets/js/demo/datatables-demo.js"></script>
+	<script src="/static/assets/js/demo/chart-area-demo.js"></script>
 
 </body>
 

@@ -29,4 +29,14 @@ public class SampleServiceImpl implements SampleService {
 	public UserVO login(UserVO vo) throws Exception {
 		return sampleDAO.login(vo);
 	}
+	
+	@Override
+	public void modify(UserVO vo) throws Exception {
+		sampleDAO.modify(vo);
+	}
+	
+	@Override
+	public void delete(UserVO vo) throws Exception {
+		sampleDAO.delete(vo);
+	}
 }

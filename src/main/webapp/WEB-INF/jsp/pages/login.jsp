@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -15,6 +17,14 @@
 	<script src="http://cdn.inlife-club.com/jquery/2.1.1/jquery-2.1.1.js"> </script>
 	
 	<script type="text/javascript">
+	
+	var result = "${result}";
+	
+	if(result === "modifyOK") {
+		alert("비밀번호가 변경되었습니다.");
+	} else if(result === "logoutOK") {
+		alert("로그아웃 되었습니다.");
+	}
 	
 	function toJson_submit() {
 		ajax_request();
@@ -35,7 +45,8 @@
 						if(login.result==true) {
 							//$('#result').html('로그인 성공');
 							alert("로그인 성공");
-							location.href="/dashBoard.jsp";
+							//location.href="/dashBoard.jsp";
+							location.href="../sample/dashBoard";
 						} 
 						else {
 							//$('#result').html('로그인 실패');
@@ -54,13 +65,13 @@
 </script>
 	
     <!-- Bootstrap core CSS-->
-    <link href="/resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link href="/resources/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
-    <link href="/resources/assets/css/sb-admin.css" rel="stylesheet">
+    <link href="/static/assets/css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -68,7 +79,8 @@
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
+        <!-- <div class="card-header">Login</div> -->
+        <div class="card-header"><a href="/sample/home">Login</a></div>
         <div class="card-body">
           <form name="loginForm">
             <div class="form-group">
@@ -96,19 +108,19 @@
             <!-- <input type="button" value="SUBMIT" onclick="toJson_submit()"> -->
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="register.html">Register an Account</a>
-            <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+            <a class="d-block small mt-3" href="/sample/register">Register an Account</a>
+            <a class="d-block small" href="/login/pwdFind">Forgot Password?</a>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="resources/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="resources/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="static/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   </body>
 

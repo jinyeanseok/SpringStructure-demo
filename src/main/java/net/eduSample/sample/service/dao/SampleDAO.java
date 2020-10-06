@@ -28,4 +28,12 @@ public class SampleDAO {
 	public UserVO login(UserVO vo) throws Exception {
 		return (UserVO)baseDAO.selectObject("userMapper.login", vo);
 	}
+	
+	public void modify(UserVO vo) throws Exception {
+		baseDAO.update("userMapper.modify", vo);
+	}
+	
+	public void delete(UserVO vo) throws Exception {
+		baseDAO.delete("userMapper.delete", vo);
+	}
 }

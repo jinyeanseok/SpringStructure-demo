@@ -31,7 +31,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register an Account</div>
         <div class="card-body">
-          <form method="post" autocomplete="off">
+          <form>
             <div class="form-group">
               <div class="form-label-group">
                 <input type="text" id="identification" name="identification" class="form-control" placeholder="ID" required="required">
