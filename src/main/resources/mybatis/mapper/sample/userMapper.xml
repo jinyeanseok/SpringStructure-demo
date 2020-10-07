@@ -12,7 +12,6 @@
    		values( #{identification}, #{password}, #{name})
    </insert>
    
-
    
    <select id="login" resultType="UserVO">
    		select identification, name, password, verify

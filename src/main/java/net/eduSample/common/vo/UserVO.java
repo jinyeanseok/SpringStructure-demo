@@ -8,6 +8,7 @@ public class UserVO {
 	private String password;
 	private String name;
 	private Date create_date;
+	private Date update_date;
 	private int verify;
 
 	public int getVerify() {
@@ -49,4 +50,13 @@ public class UserVO {
 	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;
 	}
+
+	public Date getUpdate_date() {
+		return update_date;
+	}
+
+	public void setUpdate_date(Date update_date) {
+		this.update_date = update_date;
+	}
+	
 }
