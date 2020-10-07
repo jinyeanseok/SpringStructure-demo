@@ -71,7 +71,7 @@
 
 	<div class="center">
 		<c:if test="${user != null }">
-      	     ${user.name}님 안녕하세요
+      	     관리자 페이지 입니다.   ${user.name}님 안녕하세요
       </c:if>
 	</div>
 
