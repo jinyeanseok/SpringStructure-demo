@@ -46,7 +46,7 @@
 							//$('#result').html('로그인 성공');
 							alert("로그인 성공");
 							//location.href="/dashBoard.jsp";
-							location.href="../sample/dashBoard";
+							location.href="../board/listAll";
 						} 
 						else {
 							//$('#result').html('로그인 실패');
@@ -108,7 +108,7 @@
             <!-- <input type="button" value="SUBMIT" onclick="toJson_submit()"> -->
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="/sample/register">Register an Account</a>
+            <a class="d-block small mt-3" href="/user/register">Register an Account</a>
             <a class="d-block small" href="/login/pwdFind">Forgot Password?</a>
           </div>
         </div>

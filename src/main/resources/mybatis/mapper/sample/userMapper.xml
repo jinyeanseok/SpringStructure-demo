@@ -8,8 +8,8 @@
 <mapper namespace="userMapper">
 	
    <insert id="register">
-   		insert into user(identification, password, name)
-   		values( #{identification}, #{password}, #{name})
+   		insert into user(identification, password, name, verify)
+   		values( #{identification}, #{password}, #{name}, #{verify})
    </insert>
    
    
@@ -30,5 +30,17 @@
    		from user
    		where identification = #{identification} and password = #{password}
    </delete>
-   	
+   
+   <select id="userAll" resultType="UserVO">
+   		select *
+   		from user
+   		order by identification desc
+   </select>
+   
+   <select id="userRead" resultType="UserVO">
+		select *
+		from user
+		where identification = #{identification}
+	</select>
+   
 </mapper>

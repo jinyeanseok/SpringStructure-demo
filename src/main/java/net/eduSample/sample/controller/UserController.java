@@ -1,5 +1,7 @@
 package net.eduSample.sample.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,16 +11,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
+import net.eduSample.common.vo.BoardVO;
 import net.eduSample.common.vo.UserVO;
 import net.eduSample.sample.service.SampleService;
 
 @Controller
-@RequestMapping(value = "/sample/")
+@RequestMapping(value = "/user/")
 @Slf4j
-public class SampleController {
+public class UserController {
 
 	@Resource(name = "SampleService")
 	private SampleService sampleService;
@@ -36,11 +40,6 @@ public class SampleController {
 		return "sample/sampleView";
 	}
 	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home() throws Exception {
-		return "sample/dashBoard";
-	}
-	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET() throws Exception {
 		log.info("registerGET");
@@ -52,36 +51,50 @@ public class SampleController {
 		sampleService.register(vo);
 		ra.addFlashAttribute("result", "registerOK");
 //		return "redirect:/login/form";
-		return "redirect:/sample/dashBoard";
+		return "redirect:/board/listAll";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void loginGET() throws Exception {
-		log.info("get login");
-	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPOST(UserVO vo, HttpServletRequest req, RedirectAttributes ra) throws Exception {
-		log.info("post login");
-
-		HttpSession session = req.getSession();
-
-		UserVO login = sampleService.login(vo);
-
-		if (login == null) {
-			session.setAttribute("user", null);
-			ra.addFlashAttribute("result", "loginFalse");
-		} else {
-			session.setAttribute("user", login);
-			ra.addFlashAttribute("result", "loginOK");
-		}
-		return "redirect:/";
-	}
+	// 원본
+//	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+//	public void modifyGET() throws Exception {
+//		log.info("modify GET");
+//	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modifyGET() throws Exception {
+	public void modifyGET(UserVO vo, @RequestParam("identification") String identification, ModelMap model, HttpServletRequest req) throws Exception {
 		log.info("modify GET");
+		System.out.println("modify test : " + vo.getIdentification());
+		
+		UserVO login = sampleService.login(vo);
+		
+		if(login.getVerify() != 9) {   // 세션 값 불러와서 user.getVerify하면 될듯
+//			UserVO users = sampleService.userRead(identification);
+//			model.addAttribute("UserVO", users);
+			model.addAttribute("UserVO", login);
+		}
 	}
+	
+//	// test용
+//			@RequestMapping(value = "/modify", method = RequestMethod.POST)
+//			public String modifyPOST(UserVO vo, @RequestParam("identification") String identification, HttpSession session, RedirectAttributes ra, ModelMap model) throws Exception {
+//				log.info("modify POST");
+//				
+//				if(vo.getVerify() == 9) {
+//					UserVO users = sampleService.userRead(identification);
+//					sampleService.modify(users);
+//					log.info("관리자 입장에서의 회원아이디" + users.getIdentification());
+//					model.addAttribute("UserVO", users);
+//					session.invalidate();
+//					ra.addFlashAttribute("result", "modifyOK");
+//					return "redirect:/user/userAll";
+//				} 
+//				sampleService.modify(vo);
+//				session.invalidate();
+//				ra.addFlashAttribute("result", "modifyOK");
+////				return "redirect:/sample/dashBoard";
+//				return "redirect:/login/form";
+//				// 위와 같이 /로 dashBoard로 보내도 저 경로는 <webcome-file-list>에서 설정했기 때문에 안되는듯 하다.
+//			}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
@@ -93,6 +106,7 @@ public class SampleController {
 		return "redirect:/login/form";
 		// 위와 같이 /로 dashBoard로 보내도 저 경로는 <webcome-file-list>에서 설정했기 때문에 안되는듯 하다.
 	}
+	
 	
 	@RequestMapping(value = "/dashBoard", method = RequestMethod.GET)
 	public String dashBoard() throws Exception {
@@ -125,6 +139,25 @@ public class SampleController {
 			session.invalidate();
 			ra.addFlashAttribute("result", "deleteOK");
 		}
-		return "redirect:/sample/home";
+		return "redirect:/board/listAll";
 	}
+	
+	@RequestMapping(value = "/userAll", method = RequestMethod.GET)
+	public void userAll(ModelMap model) throws Exception {
+		log.info("userAll!!");
+		List<UserVO> users = sampleService.userAll();
+		model.addAttribute("list", users);
+	}
+	
+	@RequestMapping(value = "/userRead", method = RequestMethod.GET)
+	public void userRead(@RequestParam("identification") String identification, ModelMap model) throws Exception{
+		 // 페이지 목록 유지를 위해 사용되고 있는 page, perPageNum 값 가져오기
+		 log.info("userRead GET!!!");
+//		 UserVO users = sampleService.read(identification);
+		 UserVO users = sampleService.userRead(identification);
+		 model.addAttribute("UserVO", users);
+		 log.info(users.toString());
+	}
+	
+	
 }

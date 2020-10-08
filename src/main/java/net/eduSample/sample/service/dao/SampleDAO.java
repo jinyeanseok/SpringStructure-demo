@@ -1,10 +1,13 @@
 package net.eduSample.sample.service.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 
 import net.eduSample.common.service.dao.BaseDAO;
+import net.eduSample.common.vo.BoardVO;
 import net.eduSample.common.vo.UserVO;
 
 
@@ -36,4 +39,36 @@ public class SampleDAO {
 	public void delete(UserVO vo) throws Exception {
 		baseDAO.delete("userMapper.delete", vo);
 	}
+	
+	public List<UserVO> userAll() throws Exception {
+		return (List<UserVO>)baseDAO.selectList("userMapper.userAll", "");
+	}
+	
+	public UserVO userRead(String identification) throws Exception {
+		return (UserVO) baseDAO.selectObject("userMapper.userRead", identification);
+	}
+	
+	//Board
+	
+	public void BoardRegister(BoardVO board) throws Exception {
+		baseDAO.insert("BoardMapper.create", board);
+	}
+	
+	public BoardVO read(Integer board_number) throws Exception {
+		return (BoardVO)baseDAO.selectObject("BoardMapper.read", board_number);
+	}
+	
+	public void BoardUpdate(BoardVO board) throws Exception {
+		baseDAO.update("BoardMapper.Boardupdate", board);
+	}
+	
+	public void BoardDelete(Integer board_number) throws Exception {
+		baseDAO.delete("BoardMapper.Boarddelete", board_number);
+	}
+	
+	public List<BoardVO> listAll() throws Exception {
+		return (List<BoardVO>)baseDAO.selectList("BoardMapper.listAll", "");
+	}
+	
+	
 }

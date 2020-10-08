@@ -133,13 +133,13 @@
 				<a class="dropdown-item" href="#">Settings</a> <a
 					class="dropdown-item" href="#">Activity Log</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="/sample/register">register</a>
+				<a class="dropdown-item" href="/user/register">register</a>
 				<a class="dropdown-item" href="/login/form">login</a>
 				<c:if test="${user != null }">
 					<a class="dropdown-item" href="#" data-toggle="modal"
 					data-target="#logoutModal">Logout</a> 
-					<a class="dropdown-item" href="/sample/modify">modify</a>
-					<a class="dropdown-item" href="/sample/delete">delete</a>
+					<a class="dropdown-item" href="/user/modify">modify</a>
+					<a class="dropdown-item" href="/user/delete">delete</a>
 					<c:if test="${user.verify == 9}">
 						<a class="dropdown-item" href="/admin/index">admin</a>					
 					</c:if>
@@ -791,7 +791,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="/sample/logout">Logout</a>
+					<a class="btn btn-primary" href="/user/logout">Logout</a>
 				</div>
 			</div>
 		</div>
