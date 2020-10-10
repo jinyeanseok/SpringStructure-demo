@@ -136,7 +136,7 @@
 						data-target="#logoutModal">Logout</a>
 					<a class="dropdown-item" href="/user/modify">modify</a>
 					<a class="dropdown-item" href="/user/delete">delete</a>
-					
+
 				</c:if>
 
 				<!-- 회원정보 변경추가 -->
@@ -151,22 +151,24 @@
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav">
 			<li class="nav-item active"><a class="nav-link"
-				href="/admin/listAll"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+				href="/admin/listAll"> <i class="fas fa-fw fa-tachometer-alt"></i>
+					<span>Dashboard</span>
 			</a></li>
-			
+
 			<c:if test="${user.verify == 9}">
-			<li class="nav-item"><a class="nav-link" href="/user/userAll"> <i
-					class="fas fa-fw fa-tachometer-alt"></i> <span>회원관리</span>
-			</a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/userAll">
+						<i class="fas fa-fw fa-tachometer-alt"></i> <span>회원관리</span>
+				</a></li>
 			</c:if>
-			
+
 			<!-- 루트 관리자인 admin만 관리자 가입할 수 있는 링크 보이도록 -->
 			<c:if test="${user.identification == 'admin'}">
-			<li class="nav-item"><a class="nav-link" href="/admin/admin_register">
-					<i class="fas fa-fw fa-chart-area"></i> <span>관리자가입</span>
-			</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/admin/admin_register"> <i
+						class="fas fa-fw fa-chart-area"></i> <span>관리자가입</span>
+				</a></li>
 			</c:if>
-			
+
 		</ul>
 
 		<div id="content-wrapper">
@@ -261,10 +263,20 @@
 						<i class="fas fa-table"></i> Data Table Example
 					</div>
 					<div class="card-body">
+
+						<!-- <c:if test="${user.identification != null}">
+						<a href="/board/register"><button
+								class="btn btn-primary btn-xs">새글 작성</button></a>
+					</c:if> -->
+
+						<a href="/admin/register"><button
+								class="btn btn-primary btn-xs">새글 작성</button></a>
+								
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
-								<tr> <!-- 한줄 -->
+								<tr>
+									<!-- 한줄 -->
 									<th>번호</th>
 									<!-- 첫번째 칸 -->
 									<th>제목</th>

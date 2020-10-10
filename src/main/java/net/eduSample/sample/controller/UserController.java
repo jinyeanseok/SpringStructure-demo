@@ -54,58 +54,49 @@ public class UserController {
 		return "redirect:/board/listAll";
 	}
 	
-	// 원본
+	// �썝蹂�
 //	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 //	public void modifyGET() throws Exception {
 //		log.info("modify GET");
 //	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modifyGET(UserVO vo, @RequestParam("identification") String identification, ModelMap model, HttpServletRequest req) throws Exception {
+	public void modifyGET() throws Exception {
 		log.info("modify GET");
-		System.out.println("modify test : " + vo.getIdentification());
-		
-		UserVO login = sampleService.login(vo);
-		
-		if(login.getVerify() != 9) {   // 세션 값 불러와서 user.getVerify하면 될듯
-//			UserVO users = sampleService.userRead(identification);
-//			model.addAttribute("UserVO", users);
-			model.addAttribute("UserVO", login);
-		}
 	}
-	
-//	// test용
-//			@RequestMapping(value = "/modify", method = RequestMethod.POST)
-//			public String modifyPOST(UserVO vo, @RequestParam("identification") String identification, HttpSession session, RedirectAttributes ra, ModelMap model) throws Exception {
-//				log.info("modify POST");
-//				
-//				if(vo.getVerify() == 9) {
-//					UserVO users = sampleService.userRead(identification);
-//					sampleService.modify(users);
-//					log.info("관리자 입장에서의 회원아이디" + users.getIdentification());
-//					model.addAttribute("UserVO", users);
-//					session.invalidate();
-//					ra.addFlashAttribute("result", "modifyOK");
-//					return "redirect:/user/userAll";
-//				} 
-//				sampleService.modify(vo);
-//				session.invalidate();
-//				ra.addFlashAttribute("result", "modifyOK");
-////				return "redirect:/sample/dashBoard";
-//				return "redirect:/login/form";
-//				// 위와 같이 /로 dashBoard로 보내도 저 경로는 <webcome-file-list>에서 설정했기 때문에 안되는듯 하다.
-//			}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("modify POST");
+		System.out.println("vo : " + vo.getIdentification());
+		System.out.println("vo : " + vo.getPassword());
 		sampleService.modify(vo);
 		session.invalidate();
 		ra.addFlashAttribute("result", "modifyOK");
-//		return "redirect:/sample/dashBoard";
 		return "redirect:/login/form";
-		// 위와 같이 /로 dashBoard로 보내도 저 경로는 <webcome-file-list>에서 설정했기 때문에 안되는듯 하다.
 	}
+	
+	// 관리자 전용 modify
+	@RequestMapping(value = "/modify_admin", method = RequestMethod.GET)
+	public void modifyAdminGET(UserVO vo, @RequestParam("identification") String identification, ModelMap model) throws Exception {
+		log.info("modify GET");
+		System.out.println("modify test : " + vo.getIdentification());
+		model.addAttribute("UserVO", vo);
+		}
+	
+	// 관리자 전용 modify
+	@RequestMapping(value = "/modify_admin", method = RequestMethod.POST)
+	public String modifyAdminPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
+		log.info("modify POST");
+		System.out.println("vo : " + vo.getIdentification());
+		System.out.println("vo : " + vo.getPassword());
+		sampleService.modify(vo);
+		session.invalidate();
+		ra.addFlashAttribute("result", "modifyOK");
+		return "redirect:/user/userAll";
+	}
+	
+	// 관리자 권한의 modify 메서드와 사용자 입장에서의 modify 메서드를 만들어보자
 	
 	
 	@RequestMapping(value = "/dashBoard", method = RequestMethod.GET)
@@ -131,6 +122,18 @@ public class UserController {
 		log.info("delete POST!!");
 		
 		UserVO user = (UserVO)session.getAttribute("user");
+		System.out.println("시용자의 아이디 : " + vo.getIdentification());
+		System.out.println("시용자의 비밀번호 : " + vo.getPassword());
+		System.out.println("로그인한 사용자의 아이디는 ? =  " + user.getVerify());
+		// test 추가
+		if(user.getVerify() == 9) {
+			sampleService.delete(vo);
+			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
+			session.invalidate();
+			ra.addFlashAttribute("result", "deleteOK");
+			return "redirect:/board/listAll";
+		}
+		
 		String oldPass = user.getPassword();
 		String newPass = vo.getPassword();
 		
@@ -142,6 +145,47 @@ public class UserController {
 		return "redirect:/board/listAll";
 	}
 	
+	@RequestMapping(value = "/delete_admin", method = RequestMethod.GET)
+	public void deleteAdminGET() throws Exception {
+		log.info("delete GET!!");
+	}
+	
+	@RequestMapping(value = "/delete_admin", method = RequestMethod.POST)
+	public String deleteAdminPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
+		log.info("delete POST!!");
+		
+		UserVO user = (UserVO)session.getAttribute("user");
+		System.out.println("시용자의 아이디 : " + vo.getIdentification());
+		System.out.println("시용자의 비밀번호 : " + vo.getPassword());
+		// test 추가
+//		if(user.getVerify() == 9) {
+//			sampleService.delete(vo);
+//			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
+//			session.invalidate();
+//			ra.addFlashAttribute("result", "deleteOK");
+//			return "redirect:/user/userAll";
+//		}
+//		
+//		String oldPass = user.getPassword();
+//		String newPass = vo.getPassword();
+//		
+//		if(oldPass.equals(newPass)) {
+//			sampleService.delete(vo);
+//			session.invalidate();
+//			ra.addFlashAttribute("result", "deleteOK");
+//		}
+//		return "redirect:/user/userAll";
+		
+	
+			sampleService.delete(vo);
+			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
+			session.invalidate();
+			ra.addFlashAttribute("result", "deleteOK");
+			return "redirect:/user/userAll";
+		
+	
+	}
+	
 	@RequestMapping(value = "/userAll", method = RequestMethod.GET)
 	public void userAll(ModelMap model) throws Exception {
 		log.info("userAll!!");
@@ -151,7 +195,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/userRead", method = RequestMethod.GET)
 	public void userRead(@RequestParam("identification") String identification, ModelMap model) throws Exception{
-		 // 페이지 목록 유지를 위해 사용되고 있는 page, perPageNum 값 가져오기
+		 // �럹�씠吏� 紐⑸줉 �쑀吏�瑜� �쐞�빐 �궗�슜�릺怨� �엳�뒗 page, perPageNum 媛� 媛��졇�삤湲�
 		 log.info("userRead GET!!!");
 //		 UserVO users = sampleService.read(identification);
 		 UserVO users = sampleService.userRead(identification);

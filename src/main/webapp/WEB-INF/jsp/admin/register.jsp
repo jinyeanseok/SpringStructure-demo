@@ -62,6 +62,8 @@
 								for="identification">ID</label>
 						</div>
 					</div>
+					
+					<button type="submit" class="btn btn-primary btn-block">등록</button>d
 
 
 				</form>

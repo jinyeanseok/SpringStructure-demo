@@ -189,10 +189,12 @@
 
 								<c:forEach items="${list}" var="userVO">
 									<tr>
+									<c:if test="${userVO.identification != 'admin'}">
 										<td><a
 											href="/user/userRead?identification=${userVO.identification}">${userVO.identification}</a></td>
 										<td>${userVO.password}</td>
 										<td>${userVO.name}</td>
+									</c:if>
 									</tr>
 								</c:forEach>
 							</table>

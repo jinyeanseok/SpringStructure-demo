@@ -39,11 +39,11 @@
 				
 					<div class="form-label-group">
 						<button class="btn btn-warning">
-							<a href="/user/modify?identification=${UserVO.identification}">수정</a>
+							<a href="/user/modify_admin?identification=${UserVO.identification}">수정</a>
 						</button>
 
 						<button class="btn btn-danger">
-							<a href="/user/delete?identification=${UserVO.identification}">삭제</a>
+							<a href="/user/delete_admin?identification=${UserVO.identification}">삭제</a>
 						</button>
 					</div>
 					

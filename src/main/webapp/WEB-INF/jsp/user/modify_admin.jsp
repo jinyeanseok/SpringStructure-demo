@@ -61,12 +61,7 @@
 						</div>
 						</c:if>
 						
-						<div class="form-label-group">
-							<input type="text" id="identification" name="identification"
-								class="form-control" placeholder="ID"
-								value="${user.identification}" readonly required="required"
-								autofocus="autofocus"> <label for="identification">ID</label>
-						</div>
+						
 
 					</div>
 					<div class="form-group">
