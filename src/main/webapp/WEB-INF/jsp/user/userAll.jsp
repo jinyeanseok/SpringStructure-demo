@@ -60,7 +60,7 @@
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-	<a class="navbar-brand mr-1" href="index.html">Admin Page</a>
+	<a class="navbar-brand mr-1" href="/user/userAll">Admin Page</a>
 
 	<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
 		id="sidebarToggle" href="#">
@@ -157,6 +157,14 @@
 			<li class="nav-item active"><a class="nav-link" href="/user/userAll"> <i
 					class="fas fa-fw fa-tachometer-alt"></i> <span>회원관리</span>
 			</a></li>
+			</c:if>
+			
+			<!-- 루트 관리자인 admin만 관리자 가입할 수 있는 링크 보이도록 -->
+			<c:if test="${user.identification == 'admin'}">
+				<li class="nav-item"><a class="nav-link"
+					href="/admin/admin_register"> <i
+						class="fas fa-fw fa-chart-area"></i> <span>관리자가입</span>
+				</a></li>
 			</c:if>
 			
 			<!-- 루트 관리자인 admin만 관리자 가입할 수 있는 링크 보이도록 -->

@@ -28,7 +28,8 @@ public class UserController {
 	private SampleService sampleService;
 
 	@RequestMapping(value = "/testRequest")
-	public String testReqest(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+	public String testReqest(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+			throws Exception {
 
 		String testStr = sampleService.getForDatabaseTest();
 		log.info("testReqest request start");
@@ -39,7 +40,7 @@ public class UserController {
 
 		return "sample/sampleView";
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET() throws Exception {
 		log.info("registerGET");
@@ -53,18 +54,18 @@ public class UserController {
 //		return "redirect:/login/form";
 		return "redirect:/board/listAll";
 	}
-	
+
 	// �썝蹂�
 //	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 //	public void modifyGET() throws Exception {
 //		log.info("modify GET");
 //	}
-	
+
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyGET() throws Exception {
 		log.info("modify GET");
 	}
-	
+
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("modify POST");
@@ -75,15 +76,16 @@ public class UserController {
 		ra.addFlashAttribute("result", "modifyOK");
 		return "redirect:/login/form";
 	}
-	
+
 	// 관리자 전용 modify
 	@RequestMapping(value = "/modify_admin", method = RequestMethod.GET)
-	public void modifyAdminGET(UserVO vo, @RequestParam("identification") String identification, ModelMap model) throws Exception {
+	public void modifyAdminGET(UserVO vo, @RequestParam("identification") String identification, ModelMap model)
+			throws Exception {
 		log.info("modify GET");
 		System.out.println("modify test : " + vo.getIdentification());
 		model.addAttribute("UserVO", vo);
-		}
-	
+	}
+
 	// 관리자 전용 modify
 	@RequestMapping(value = "/modify_admin", method = RequestMethod.POST)
 	public String modifyAdminPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
@@ -91,117 +93,95 @@ public class UserController {
 		System.out.println("vo : " + vo.getIdentification());
 		System.out.println("vo : " + vo.getPassword());
 		sampleService.modify(vo);
-		session.invalidate();
+//		session.invalidate();   관리자가 다른 사람의 정보를 변경할 때는 세션을 끊을 필요가없다.
 		ra.addFlashAttribute("result", "modifyOK");
 		return "redirect:/user/userAll";
 	}
-	
+
 	// 관리자 권한의 modify 메서드와 사용자 입장에서의 modify 메서드를 만들어보자
-	
-	
+
 	@RequestMapping(value = "/dashBoard", method = RequestMethod.GET)
 	public String dashBoard() throws Exception {
 		return "sample/dashBoard";
 	}
-	
-	@RequestMapping(value ="/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session, RedirectAttributes ra ) throws Exception {
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("logout!!");
 		ra.addFlashAttribute("result", "logoutOK");
 		session.invalidate();
 		return "redirect:/login/form";
 	}
-	
+
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public void deleteGET() throws Exception {
 		log.info("delete GET!!");
 	}
-	
+
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String deletePOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("delete POST!!");
-		
-		UserVO user = (UserVO)session.getAttribute("user");
+
+		UserVO user = (UserVO) session.getAttribute("user");
 		System.out.println("시용자의 아이디 : " + vo.getIdentification());
 		System.out.println("시용자의 비밀번호 : " + vo.getPassword());
 		System.out.println("로그인한 사용자의 아이디는 ? =  " + user.getVerify());
 		// test 추가
-		if(user.getVerify() == 9) {
+		if (user.getVerify() == 9) {
 			sampleService.delete(vo);
 			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
 			session.invalidate();
 			ra.addFlashAttribute("result", "deleteOK");
 			return "redirect:/board/listAll";
 		}
-		
+
 		String oldPass = user.getPassword();
 		String newPass = vo.getPassword();
-		
-		if(oldPass.equals(newPass)) {
+
+		if (oldPass.equals(newPass)) {
 			sampleService.delete(vo);
 			session.invalidate();
 			ra.addFlashAttribute("result", "deleteOK");
 		}
 		return "redirect:/board/listAll";
 	}
-	
+
 	@RequestMapping(value = "/delete_admin", method = RequestMethod.GET)
 	public void deleteAdminGET() throws Exception {
 		log.info("delete GET!!");
 	}
-	
+
 	@RequestMapping(value = "/delete_admin", method = RequestMethod.POST)
 	public String deleteAdminPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("delete POST!!");
-		
-		UserVO user = (UserVO)session.getAttribute("user");
+
+		UserVO user = (UserVO) session.getAttribute("user");
 		System.out.println("시용자의 아이디 : " + vo.getIdentification());
 		System.out.println("시용자의 비밀번호 : " + vo.getPassword());
-		// test 추가
-//		if(user.getVerify() == 9) {
-//			sampleService.delete(vo);
-//			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
-//			session.invalidate();
-//			ra.addFlashAttribute("result", "deleteOK");
-//			return "redirect:/user/userAll";
-//		}
-//		
-//		String oldPass = user.getPassword();
-//		String newPass = vo.getPassword();
-//		
-//		if(oldPass.equals(newPass)) {
-//			sampleService.delete(vo);
-//			session.invalidate();
-//			ra.addFlashAttribute("result", "deleteOK");
-//		}
-//		return "redirect:/user/userAll";
-		
-	
-			sampleService.delete(vo);
-			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
-			session.invalidate();
-			ra.addFlashAttribute("result", "deleteOK");
-			return "redirect:/user/userAll";
-		
-	
+
+		sampleService.delete(vo);
+		System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
+//			session.invalidate(); 관리자가 다른 사람의 정보를 삭제 할 때는 세션을 끊을 필요가없다.
+		ra.addFlashAttribute("result", "deleteOK");
+		return "redirect:/user/userAll";
+
 	}
-	
+
 	@RequestMapping(value = "/userAll", method = RequestMethod.GET)
 	public void userAll(ModelMap model) throws Exception {
 		log.info("userAll!!");
 		List<UserVO> users = sampleService.userAll();
 		model.addAttribute("list", users);
 	}
-	
+
 	@RequestMapping(value = "/userRead", method = RequestMethod.GET)
-	public void userRead(@RequestParam("identification") String identification, ModelMap model) throws Exception{
-		 // �럹�씠吏� 紐⑸줉 �쑀吏�瑜� �쐞�빐 �궗�슜�릺怨� �엳�뒗 page, perPageNum 媛� 媛��졇�삤湲�
-		 log.info("userRead GET!!!");
+	public void userRead(@RequestParam("identification") String identification, ModelMap model) throws Exception {
+		// �럹�씠吏� 紐⑸줉 �쑀吏�瑜� �쐞�빐 �궗�슜�릺怨� �엳�뒗 page, perPageNum 媛� 媛��졇�삤湲�
+		log.info("userRead GET!!!");
 //		 UserVO users = sampleService.read(identification);
-		 UserVO users = sampleService.userRead(identification);
-		 model.addAttribute("UserVO", users);
-		 log.info(users.toString());
+		UserVO users = sampleService.userRead(identification);
+		model.addAttribute("UserVO", users);
+		log.info(users.toString());
 	}
-	
-	
+
 }

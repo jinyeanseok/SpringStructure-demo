@@ -18,6 +18,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	  UserVO user = (UserVO)session.getAttribute("user");
 	  
 	  if(user == null || user.getVerify() != 9) {
+//	  if(user.getVerify() != 9) {
 	   res.sendRedirect("/login/form");
 	   return false;
 	  }
