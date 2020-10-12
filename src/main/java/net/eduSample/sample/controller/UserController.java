@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 import net.eduSample.common.vo.BoardVO;
+import net.eduSample.common.vo.HistoryVO;
 import net.eduSample.common.vo.UserVO;
 import net.eduSample.sample.service.SampleService;
 
@@ -47,19 +48,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPOST(UserVO vo, RedirectAttributes ra) throws Exception {
+	public String registerPOST(UserVO vo, HistoryVO hist, RedirectAttributes ra) throws Exception {
 		log.info("registerPOST");
 		sampleService.register(vo);
+		// sampleService.Hist_modify(hist); // hist table
 		ra.addFlashAttribute("result", "registerOK");
-//		return "redirect:/login/form";
+		// return "redirect:/login/form";
 		return "redirect:/board/listAll";
 	}
 
 	// �썝蹂�
-//	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-//	public void modifyGET() throws Exception {
-//		log.info("modify GET");
-//	}
+	// @RequestMapping(value = "/modify", method = RequestMethod.GET)
+	// public void modifyGET() throws Exception {
+	// log.info("modify GET");
+	// }
 
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyGET() throws Exception {
@@ -93,7 +95,7 @@ public class UserController {
 		System.out.println("vo : " + vo.getIdentification());
 		System.out.println("vo : " + vo.getPassword());
 		sampleService.modify(vo);
-//		session.invalidate();   관리자가 다른 사람의 정보를 변경할 때는 세션을 끊을 필요가없다.
+		// session.invalidate(); 관리자가 다른 사람의 정보를 변경할 때는 세션을 끊을 필요가없다.
 		ra.addFlashAttribute("result", "modifyOK");
 		return "redirect:/user/userAll";
 	}
@@ -125,15 +127,6 @@ public class UserController {
 		UserVO user = (UserVO) session.getAttribute("user");
 		System.out.println("시용자의 아이디 : " + vo.getIdentification());
 		System.out.println("시용자의 비밀번호 : " + vo.getPassword());
-		System.out.println("로그인한 사용자의 아이디는 ? =  " + user.getVerify());
-		// test 추가
-		if (user.getVerify() == 9) {
-			sampleService.delete(vo);
-			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
-			session.invalidate();
-			ra.addFlashAttribute("result", "deleteOK");
-			return "redirect:/board/listAll";
-		}
 
 		String oldPass = user.getPassword();
 		String newPass = vo.getPassword();
@@ -155,14 +148,23 @@ public class UserController {
 	public String deleteAdminPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("delete POST!!");
 
-		UserVO user = (UserVO) session.getAttribute("user");
 		System.out.println("시용자의 아이디 : " + vo.getIdentification());
 		System.out.println("시용자의 비밀번호 : " + vo.getPassword());
 
-		sampleService.delete(vo);
-		System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
-//			session.invalidate(); 관리자가 다른 사람의 정보를 삭제 할 때는 세션을 끊을 필요가없다.
-		ra.addFlashAttribute("result", "deleteOK");
+		String userID = vo.getIdentification();
+		UserVO userPW = sampleService.userInfo(userID);
+
+		System.out.println("입력한 사용자의 비밀번호 : " + vo.getPassword());
+		System.out.println("관리자가 삭제할 사용자의 비밀번호 : " + userPW.getPassword());
+
+		// if(userPW.getPassword() == vo.getPassword()) {
+		if (userPW.getPassword().equals(vo.getPassword())) {
+			sampleService.delete(vo);
+			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
+			ra.addFlashAttribute("result", "deleteOK");
+			return "redirect:/user/userAll";
+		}
+		ra.addFlashAttribute("result", "deleteNO");
 		return "redirect:/user/userAll";
 
 	}
@@ -178,7 +180,7 @@ public class UserController {
 	public void userRead(@RequestParam("identification") String identification, ModelMap model) throws Exception {
 		// �럹�씠吏� 紐⑸줉 �쑀吏�瑜� �쐞�빐 �궗�슜�릺怨� �엳�뒗 page, perPageNum 媛� 媛��졇�삤湲�
 		log.info("userRead GET!!!");
-//		 UserVO users = sampleService.read(identification);
+		// UserVO users = sampleService.read(identification);
 		UserVO users = sampleService.userRead(identification);
 		model.addAttribute("UserVO", users);
 		log.info(users.toString());

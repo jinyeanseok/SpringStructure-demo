@@ -35,6 +35,8 @@
 		alert("회원가입이 완료되었습니다.");
 	} else if (result === "deleteOK") {
 		alert("회원삭제가 완료되었습니다.");
+	} else if (result === "deleteNO") {
+		alert("회원 삭제를 실패하였습니다.");
 	}
 </script>
 

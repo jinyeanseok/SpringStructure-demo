@@ -4,43 +4,49 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="userMapper">
-	
-   <insert id="register">
-   		insert into user(identification, password, name, verify)
-   		values( #{identification}, #{password}, #{name}, #{verify})
-   </insert>
-   
-   
-   <select id="login" resultType="UserVO">
-   		select identification, name, password, verify
-   		from user
-   		where identification = #{identification}
-   </select> 
-   
-   <update id="modify">
-   		update user
-   		set password = #{password}, update_date = now()
-   		where identification = #{identification}
-   </update>
-   
-   <delete id="delete">
-   		delete 
-   		from user
-   		where identification = #{identification} and password = #{password}
-   </delete>
-   
-   <select id="userAll" resultType="UserVO">
-   		select *
-   		from user
-   		order by identification desc
-   </select>
-   
-   <select id="userRead" resultType="UserVO">
-		select *
+
+	<insert id="register">
+		insert into user(identification, password, name, verify)
+		values( #{identification}, #{password}, #{name}, #{verify})
+	</insert>
+
+
+	<select id="login" resultType="UserVO">
+		select identification, name, password, verify
 		from user
 		where identification = #{identification}
 	</select>
-   
+
+	<update id="modify">
+		update user
+		set password = #{password}, update_date = now()
+		where identification = #{identification}
+	</update>
+
+	<delete id="delete">
+		delete
+		from user
+		where identification = #{identification} and password = #{password}
+	</delete>
+
+	<select id="userAll" resultType="UserVO">
+		select *
+		from user
+		order by identification desc
+	</select>
+
+	<select id="userRead" resultType="UserVO">
+		select *
+		from user
+		where
+		identification = #{identification}
+	</select>
+
+	<select id="userInfo" resultType="UserVO">
+		select password
+		from user
+		where identification = #{identification}
+	</select>
 </mapper>

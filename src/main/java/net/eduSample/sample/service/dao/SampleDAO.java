@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import net.eduSample.common.service.dao.BaseDAO;
 import net.eduSample.common.vo.BoardVO;
+import net.eduSample.common.vo.HistoryVO;
 import net.eduSample.common.vo.UserVO;
 
 
@@ -48,6 +49,10 @@ public class SampleDAO {
 		return (UserVO) baseDAO.selectObject("userMapper.userRead", identification);
 	}
 	
+	public UserVO userInfo(String userID) throws Exception {
+		return (UserVO)baseDAO.selectObject("userMapper.userInfo", userID);
+	}
+	
 	//Board
 	
 	public void BoardRegister(BoardVO board) throws Exception {
@@ -70,5 +75,15 @@ public class SampleDAO {
 		return (List<BoardVO>)baseDAO.selectList("BoardMapper.listAll", "");
 	}
 	
+	
+	// history
+	
+	public void Hist_register(HistoryVO hist) throws Exception {
+		baseDAO.insert("histMapper.Hist_register", hist);
+	}
+	
+	public void Hist_modify(HistoryVO hist) throws Exception {
+		baseDAO.update("histMapper.Hist_modify", hist);
+	}
 	
 }
