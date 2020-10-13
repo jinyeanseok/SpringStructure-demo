@@ -57,12 +57,6 @@ public class UserController {
 		return "redirect:/board/listAll";
 	}
 
-	// �썝蹂�
-	// @RequestMapping(value = "/modify", method = RequestMethod.GET)
-	// public void modifyGET() throws Exception {
-	// log.info("modify GET");
-	// }
-
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modifyGET() throws Exception {
 		log.info("modify GET");
@@ -148,16 +142,12 @@ public class UserController {
 	public String deleteAdminPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("delete POST!!");
 
-		System.out.println("시용자의 아이디 : " + vo.getIdentification());
-		System.out.println("시용자의 비밀번호 : " + vo.getPassword());
-
 		String userID = vo.getIdentification();
 		UserVO userPW = sampleService.userInfo(userID);
-
+		
 		System.out.println("입력한 사용자의 비밀번호 : " + vo.getPassword());
 		System.out.println("관리자가 삭제할 사용자의 비밀번호 : " + userPW.getPassword());
 
-		// if(userPW.getPassword() == vo.getPassword()) {
 		if (userPW.getPassword().equals(vo.getPassword())) {
 			sampleService.delete(vo);
 			System.out.println("아이디 = " + vo.getIdentification() + "," + "비밀번호 = " + vo.getPassword());
@@ -178,9 +168,7 @@ public class UserController {
 
 	@RequestMapping(value = "/userRead", method = RequestMethod.GET)
 	public void userRead(@RequestParam("identification") String identification, ModelMap model) throws Exception {
-		// �럹�씠吏� 紐⑸줉 �쑀吏�瑜� �쐞�빐 �궗�슜�릺怨� �엳�뒗 page, perPageNum 媛� 媛��졇�삤湲�
 		log.info("userRead GET!!!");
-		// UserVO users = sampleService.read(identification);
 		UserVO users = sampleService.userRead(identification);
 		model.addAttribute("UserVO", users);
 		log.info(users.toString());
