@@ -213,7 +213,6 @@
 		</dependency>
 
 
-
 	</dependencies>
 	<build>
 		<finalName>sample</finalName>
