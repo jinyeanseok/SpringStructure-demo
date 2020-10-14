@@ -213,6 +213,7 @@
 		</dependency>
 
 
+
 	</dependencies>
 	<build>
 		<finalName>sample</finalName>
@@ -224,11 +225,6 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-					<url>http://172.31.16.215:7070/manager/text</url>
-					<path>/SpringStructure-demo</path>
-					<username>edu-dev-user</username>
-					<password>dev1404</password>
-
 				</configuration>
 			</plugin>
 		</plugins>
