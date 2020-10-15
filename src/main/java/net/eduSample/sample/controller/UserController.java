@@ -173,5 +173,4 @@ public class UserController {
 		model.addAttribute("UserVO", users);
 		log.info(users.toString());
 	}	
-	
 }
