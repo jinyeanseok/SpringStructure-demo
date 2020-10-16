@@ -65,6 +65,7 @@
 		<i class="fas fa-bars"></i>
 	</button>
 
+
 	<div class="center">
 		<c:if test="${user != null }">
       	     ${user.identification}님 안녕하세요
