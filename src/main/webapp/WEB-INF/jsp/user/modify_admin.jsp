@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin - Login</title>
+<title>jys - Login</title>
 <script src="http://cdn.inlife-club.com/jquery/2.1.1/jquery-2.1.1.js">
 	
 </script>

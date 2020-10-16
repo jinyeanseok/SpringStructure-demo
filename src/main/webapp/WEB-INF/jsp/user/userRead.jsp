@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin - Register</title>
+<title>jys - Register</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css"

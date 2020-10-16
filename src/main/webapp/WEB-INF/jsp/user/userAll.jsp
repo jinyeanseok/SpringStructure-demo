@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin - Dashboard</title>
+<title>Admin - Dashboard - Dashboard</title>
 
 <style type="text/css">
 .center {

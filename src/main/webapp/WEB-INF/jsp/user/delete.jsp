@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - DELETE</title>
+    <title>jys - DELETE</title>
 	<script src="http://cdn.inlife-club.com/jquery/2.1.1/jquery-2.1.1.js"> </script>
 	
 	<script type="text/javascript">

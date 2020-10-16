@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Forgot Password</title>
+    <title>jys - Forgot Password</title>
 
     <!-- Bootstrap core CSS-->
     <link href="/resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
