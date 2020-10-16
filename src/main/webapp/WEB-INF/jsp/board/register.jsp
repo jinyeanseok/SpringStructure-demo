@@ -55,6 +55,9 @@
 						</div>
 					</div>
 					
+					<input type="hidden" id="user_number" name="user_number" value="${user.user_number }"/>
+					
+					
 					<div class="form-group">
 						<div class="form-label-group">
 							<input type="text" id="identification" name="identification" class="form-control"

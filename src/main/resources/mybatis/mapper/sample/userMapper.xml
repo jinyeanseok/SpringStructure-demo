@@ -14,7 +14,7 @@
 
 
 	<select id="login" resultType="UserVO">
-		select identification, name, password, verify
+		select identification, name, password, verify, user_number
 		from user
 		where identification = #{identification}
 	</select>

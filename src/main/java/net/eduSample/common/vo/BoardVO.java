@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class BoardVO {
 	private Integer board_number;
+	private Integer user_number;
 	private String title;
 	private String identification;
 	private Date create_date;
@@ -14,6 +15,14 @@ public class BoardVO {
 
 	public void setBoard_number(Integer board_number) {
 		this.board_number = board_number;
+	}
+
+	public Integer getUser_number() {
+		return user_number;
+	}
+
+	public void setUser_number(Integer user_number) {
+		this.user_number = user_number;
 	}
 
 	public String getTitle() {

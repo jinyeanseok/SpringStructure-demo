@@ -9,8 +9,8 @@
 
 	<!-- 데이터 삽입 -->
 	<insert id="create">
-		insert into board (title, identification)
-		values( #{title}, #{identification})
+		insert into board (title, identification, user_number)
+		values( #{title}, #{identification}, #{user_number})
 	</insert>
 	
 	<!-- 행 검색 -->

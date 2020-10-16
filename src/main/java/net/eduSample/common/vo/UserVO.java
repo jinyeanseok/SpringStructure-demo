@@ -3,7 +3,8 @@ package net.eduSample.common.vo;
 import java.util.Date;
 
 public class UserVO {
-
+	
+	private Integer user_number;
 	private String identification;
 	private String password;
 	private String name;
@@ -17,6 +18,15 @@ public class UserVO {
 
 	public void setVerify(int verify) {
 		this.verify = verify;
+	}
+
+	
+	public Integer getUser_number() {
+		return user_number;
+	}
+
+	public void setUser_number(Integer user_number) {
+		this.user_number = user_number;
 	}
 
 	public String getIdentification() {
