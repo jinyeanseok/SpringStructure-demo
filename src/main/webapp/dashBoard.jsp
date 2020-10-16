@@ -36,20 +36,20 @@
 </script>
 
 <!-- Bootstrap core CSS-->
-<link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link href="static/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom fonts for this template-->
-<link href="../static/assets/vendor/fontawesome-free/css/all.min.css"
+<link href="static/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- Page level plugin CSS-->
 <link
-	href="../static/assets/vendor/datatables/dataTables.bootstrap4.css"
+	href="static/assets/vendor/datatables/dataTables.bootstrap4.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="../static/assets/css/sb-admin.css" rel="stylesheet">
+<link href="static/assets/css/sb-admin.css" rel="stylesheet">
 
 
 </head>
@@ -790,26 +790,26 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="../static/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="static/assets/vendor/jquery/jquery.min.js"></script>
 	<script
-		src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
 	<script
-		src="../static/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+		src="static/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Page level plugin JavaScript-->
-	<script src="../static/assets/vendor/chart.js/Chart.min.js"></script>
-	<script src="../static/assets/vendor/datatables/jquery.dataTables.js"></script>
+	<script src="static/assets/vendor/chart.js/Chart.min.js"></script>
+	<script src="static/assets/vendor/datatables/jquery.dataTables.js"></script>
 	<script
-		src="../static/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+		src="static/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="../static/assets/js/sb-admin.min.js"></script>
+	<script src="static/assets/js/sb-admin.min.js"></script>
 
 	<!-- Demo scripts for this page-->
-	<script src="../static/assets/js/demo/datatables-demo.js"></script>
-	<script src="../static/assets/js/demo/chart-area-demo.js"></script>
+	<script src="static/assets/js/demo/datatables-demo.js"></script>
+	<script src="static/assets/js/demo/chart-area-demo.js"></script>
 
 </body>
 
