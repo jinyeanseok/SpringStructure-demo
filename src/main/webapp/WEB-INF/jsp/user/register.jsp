@@ -15,13 +15,13 @@
     <title>jys - Register</title>
 
     <!-- Bootstrap core CSS-->
-    <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link href="/static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
-    <link href="/static/assets/css/sb-admin.css" rel="stylesheet">
+    <link href="static/assets/css/sb-admin.css" rel="stylesheet">
 
   </head>
 
@@ -65,11 +65,11 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/static/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/static/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="static/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   </body>
 
