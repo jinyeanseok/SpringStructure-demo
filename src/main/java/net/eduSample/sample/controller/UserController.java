@@ -172,6 +172,6 @@ public class UserController {
 		UserVO users = sampleService.userRead(identification);
 		model.addAttribute("UserVO", users);
 		log.info(users.toString());
-		// jenkins TEST 43
+		// jenkins TEST 44
 	}	
 }
