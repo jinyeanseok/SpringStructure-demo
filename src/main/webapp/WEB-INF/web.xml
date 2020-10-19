@@ -54,6 +54,7 @@
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>dashBoard.jsp</welcome-file>
 		<welcome-file>index.html</welcome-file>
+		
 		<!-- <welcome-file>index.jsp</welcome-file> -->
 	</welcome-file-list>
 
