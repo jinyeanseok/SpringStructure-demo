@@ -70,7 +70,11 @@ public class SampleServiceImpl implements SampleService {
 
 	@Override
 	public void BoardUpdate(BoardVO board) throws Exception {
-		sampleDAO.BoardUpdate(board);
+		sampleDAO.BoardUpdate(board); // ROLLBACK
+		
+		// 특수문자가 있으면 EXCEPTION
+		
+		//히스토리 인서트
 	}
 
 	@Override
