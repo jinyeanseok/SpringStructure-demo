@@ -55,7 +55,7 @@
             
             <div class="form-group">
               <div class="form-label-group">
-                <input type="text" id="verify" name="verify" class="form-control" placeholder="verify" required="required">
+                <input type="text" id="verify" name="verify" class="form-control" placeholder="verify" value="9" required="required">
                 <label for="verify">verify</label>
               </div>
             </div>
