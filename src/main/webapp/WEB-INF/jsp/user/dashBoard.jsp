@@ -74,6 +74,7 @@
       	     ${user.name}님 안녕하세요
       </c:if>
 	</div>
+	jenkins 배포 test
 
 	<!-- Navbar Search -->
 	<form
