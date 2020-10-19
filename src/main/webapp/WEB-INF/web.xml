@@ -50,6 +50,7 @@
 		<param-value>classpath:spring/com/*.xml</param-value> <!-- context-datasource.xml의 위치 -->
 	</context-param>
 
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>dashBoard.jsp</welcome-file>
