@@ -71,6 +71,7 @@
       	     ${user.identification}님 안녕하세요
       </c:if>
       ${result}
+      jenkins 배포 test
 	</div>
 
 	<!-- Navbar Search -->
