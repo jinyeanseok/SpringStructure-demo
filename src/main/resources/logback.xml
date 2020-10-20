@@ -32,8 +32,7 @@
          <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
                   <!-- <file>c:\LogExample\logexample4.log</file>  -->
-                  <!-- <file>/edu-project/logs/jys</file> -->
-                  <file>${LOG_HOME}/mylog.txt</file>
+                  <file>/edu-project/logs/jys</file>
 
                   <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 
