@@ -8,10 +8,12 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>
+		<logback.version>1.1.1</logback.version>
 	</properties>
 	<name>sample Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -24,6 +26,16 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>4.3.24.RELEASE</version>
+			<exclusions>
+
+                           <exclusion>
+
+                                   <groupId>commons-logging</groupId>
+
+                                   <artifactId>commons-logging</artifactId>
+                           </exclusion>
+
+                  </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -45,6 +57,16 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>4.3.24.RELEASE</version>
+			<exclusions>
+
+                           <exclusion>
+
+                                   <groupId>commons-logging</groupId>
+
+                                   <artifactId>commons-logging</artifactId>
+                           </exclusion>
+
+                  </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -100,11 +122,11 @@
 			<version>1.8.1</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.26</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -116,6 +138,16 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.8</version>
+			<exclusions>
+
+                           <exclusion>
+
+                                   <groupId>commons-logging</groupId>
+
+                                   <artifactId>commons-logging</artifactId>
+                           </exclusion>
+
+                  </exclusions>
 		</dependency>
 
 		<dependency>
@@ -124,17 +156,17 @@
 			<version>3.9</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>2.11.1</version>
-		</dependency>
+		</dependency> -->
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>2.11.1</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -158,11 +190,14 @@
 			<version>8.0.15</version>
 		</dependency>
 
+		<!-- 
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
 		</dependency>
+		 -->
+		 
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
@@ -232,8 +267,22 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.1</version>
 		</dependency>
+		
+		 <!-- Logback --> 
+
+         <dependency>                                    
+                  <groupId>org.slf4j</groupId>                
+                  <artifactId>jcl-over-slf4j</artifactId>     
+                  <version>${jcloverslf4j.version}</version>  
+         </dependency>
+
+         <dependency>
+                  <groupId>ch.qos.logback</groupId>
+                  <artifactId>logback-classic</artifactId>
+                  <version>${logback.version}</version>
+         </dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>sample</finalName>
 		<plugins>

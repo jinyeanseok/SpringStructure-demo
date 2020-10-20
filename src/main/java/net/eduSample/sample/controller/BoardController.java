@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ import net.eduSample.sample.service.SampleService;
 @Slf4j
 public class BoardController {
 
+	private static final Log LOG = LogFactory.getLog( BoardController.class );
+	
 	@Resource(name = "SampleService")
 	private SampleService sampleService;
 
@@ -56,6 +60,10 @@ public class BoardController {
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
 	public void listAll(ModelMap model) throws Exception {
 		log.info("listAll!!");
+		LOG.debug( "#ex1 - debug log" );
+		LOG.info( "#ex1 - info log" );
+		LOG.warn( "#ex1 - warn log" );
+		LOG.error( "#ex1 - error log" );
 		List<BoardVO> boards = sampleService.listAll();
 		model.addAttribute("list", boards);
 	}
