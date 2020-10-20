@@ -25,7 +25,6 @@
          </appender>
 
 
-
          <!-- 파일로 로그를 남김 -->
 
          <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
