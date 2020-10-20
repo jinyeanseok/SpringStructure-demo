@@ -109,5 +109,5 @@
 
          </root>
 
-		 <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+		
 </configuration>
