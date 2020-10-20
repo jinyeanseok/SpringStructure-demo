@@ -55,7 +55,6 @@
                   </triggeringPolicy>
 
 
-
                   <!-- 파일을 덮어쓰는 정책 -->
 
                   <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
