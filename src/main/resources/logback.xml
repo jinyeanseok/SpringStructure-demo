@@ -25,20 +25,25 @@
          </appender>
 
 
+
+
          <!-- 파일로 로그를 남김 -->
 
          <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
-                  <!-- <file>c:\LogExample\logexample4.log</file>  -->
-                  <file>./edu-project/logs/jys/logexample.log</file>
+                  <file>/edu-project/logs/jys/logexample2.log</file>
 
                   <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 
                            <Pattern>
+
                                    %d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n
+
                            </Pattern>
 
                   </encoder>
+
+
 
                   <!-- 로그를 남기는 파일의 용량이 50KB가 넘으면 이를 압축 파일로 만들고 새로 로그 파일로 만들라는 정책 -->
 
@@ -49,6 +54,7 @@
                            <MaxFileSize>10KB</MaxFileSize>
 
                   </triggeringPolicy>
+
 
 
                   <!-- 파일을 덮어쓰는 정책 -->
@@ -96,6 +102,7 @@
 
 
 
+
          <!-- root는 글로벌 로거를 의미하며, 위의 logger에 해당하지 않으면 root 로거가 실행된다. -->
 
          <root level="warn">
@@ -104,5 +111,5 @@
 
          </root>
 
-		
+
 </configuration>
