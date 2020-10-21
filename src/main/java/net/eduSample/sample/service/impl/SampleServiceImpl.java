@@ -33,10 +33,10 @@ public class SampleServiceImpl implements SampleService {
 	public void register(UserVO vo) throws Exception {
 		try {
 			sampleDAO.register(vo);
-//			BoardVO board = new BoardVO();
-//			board.setBoard_number(1);
-//			board.setTitle("transaction TEST");
-//			sampleDAO.BoardUpdate(board);
+			BoardVO board = new BoardVO();
+			board.setBoard_number(1);
+			board.setTitle("transaction TEST");
+			sampleDAO.BoardUpdate(board);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception(); // Spring에 던져준다 (이거 있어야 rollback 처리됨)
