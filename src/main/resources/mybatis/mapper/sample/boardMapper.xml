@@ -24,7 +24,7 @@
 	<update id="Boardupdate">
 		update board
 		set title = #{title}
-		where board_number = #{board_number}
+		where board_number = #{board_number} <!-- transaction TEST로 board_number를 board_numbe로 변경 -->
 	</update>
     
 	<!-- 행 삭제 -->
@@ -38,6 +38,5 @@
 		from board
 		order by board_number desc, create_date desc
 	</select>
-    
-    
+	
 </mapper>

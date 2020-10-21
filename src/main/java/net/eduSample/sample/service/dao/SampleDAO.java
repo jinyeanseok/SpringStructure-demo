@@ -86,4 +86,5 @@ public class SampleDAO {
 		baseDAO.update("histMapper.Hist_modify", hist);
 	}
 	
+	
 }

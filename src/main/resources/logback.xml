@@ -51,17 +51,12 @@
     <logger name="org.springframework" level="DEBUG" >
     </logger>
     
-    <logger name="egovframework.*" level="DEBUG">
-    </logger>
-    
     <logger name="java.sql" level="DEBUG">
     </logger>
     
     <logger name="org.mybatis.spring" level="DEBUG">
     </logger>
     
-    <logger name="egovframework.sqlmappers" level="TRACE">
-    </logger>
     
     <root level="DEBUG">
        <appender-ref ref="ROLLING"/>

@@ -1,8 +1,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
-	
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/mvc 
@@ -24,7 +26,7 @@
 		</property>
 	</bean>
 
-	<!-- <mvc:resources mapping="/resources/**" location="/resources/" />  -->
+	<!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
 	<mvc:resources mapping="/static/**" location="/static/" />
 	<mvc:resources mapping="/favicon.ico" location="/WEB-INF/img/common/favicon.ico" />
 
@@ -32,27 +34,24 @@
 
 	<bean id="AdminInterceptor" class="net.eduSample.interceptor.AdminInterceptor" />
 
-
 	<!-- Interceptor 설정 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" />
-			<mvc:mapping path="/user/userAll"/>
+			<mvc:mapping path="/user/userAll" />
 			<!-- <mvc:exclude-mapping path="/resources/**"/> -->
 			<ref bean="AdminInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<!-- 
-	<beans:bean id="AdminInterceptor" class="com.kubg.interceptor.AdminInterceptor" />
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" /> <!-- 트랜잭션 대상 선정. 바뀔 일 없고 이후 복사해서 사용 -->
+	</bean>
 
-	<interceptors>
-		<interceptor>
-			<mapping path="/admin/**" />
-			<beans:ref bean="AdminInterceptor" />
-		</interceptor>
-	</interceptors>
-	 -->
+
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
 
 
 </beans>

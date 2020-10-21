@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.eduSample.common.vo.BoardVO;
 import net.eduSample.common.vo.HistoryVO;
@@ -23,9 +26,21 @@ public class SampleServiceImpl implements SampleService {
 		return sampleDAO.getForDatabaseTest();
 	}
 
+	// aop TEST 메서드
+	// @Transactional(propagation = Propagation.REQUIRED, rollbackFor={Exception.class}) 적용됨
+	@Transactional(rollbackFor = { Exception.class })
 	@Override
 	public void register(UserVO vo) throws Exception {
-		sampleDAO.register(vo);
+		try {
+			sampleDAO.register(vo);
+//			BoardVO board = new BoardVO();
+//			board.setBoard_number(1);
+//			board.setTitle("transaction TEST");
+//			sampleDAO.BoardUpdate(board);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception(); // Spring에 던져준다 (이거 있어야 rollback 처리됨)
+		}
 	}
 
 	@Override
@@ -52,12 +67,11 @@ public class SampleServiceImpl implements SampleService {
 	public UserVO userRead(String identification) throws Exception {
 		return (UserVO) sampleDAO.userRead(identification);
 	}
-	
+
 	public UserVO userInfo(String userID) throws Exception {
 		return (UserVO) sampleDAO.userInfo(userID);
 	}
 
-	// Board
 	@Override
 	public void BoardRegister(BoardVO board) throws Exception {
 		sampleDAO.BoardRegister(board);
@@ -68,13 +82,17 @@ public class SampleServiceImpl implements SampleService {
 		return (BoardVO) sampleDAO.read(board_number);
 	}
 
+	// @Transactional(rollbackFor = DataAccessException.class)
 	@Override
 	public void BoardUpdate(BoardVO board) throws Exception {
-		sampleDAO.BoardUpdate(board); // ROLLBACK
-		
+		// sampleDAO.BoardUpdate(board);
+		// ROLLBACK
 		// 특수문자가 있으면 EXCEPTION
-		
-		//히스토리 인서트
+
+		// 히스토리 인서트
+		sampleDAO.BoardUpdate(board);
+		// throw new Exception(); // Spring에 던져준다
+
 	}
 
 	@Override
@@ -96,5 +114,5 @@ public class SampleServiceImpl implements SampleService {
 	public void Hist_modify(HistoryVO hist) throws Exception {
 		sampleDAO.Hist_modify(hist);
 	}
-	
+
 }
