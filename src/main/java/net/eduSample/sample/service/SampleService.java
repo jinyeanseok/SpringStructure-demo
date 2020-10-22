@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.eduSample.common.vo.BoardVO;
 import net.eduSample.common.vo.UserVO;
-import net.eduSample.common.vo.User_histVO;
 
 public interface SampleService {
 

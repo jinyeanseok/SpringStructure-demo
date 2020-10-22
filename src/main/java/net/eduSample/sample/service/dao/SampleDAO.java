@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import net.eduSample.common.service.dao.BaseDAO;
 import net.eduSample.common.vo.BoardVO;
 import net.eduSample.common.vo.UserVO;
-import net.eduSample.common.vo.User_histVO;
 
 
 @Repository("SampleDAO")

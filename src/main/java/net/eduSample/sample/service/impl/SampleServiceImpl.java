@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.eduSample.common.vo.BoardVO;
 import net.eduSample.common.vo.UserVO;
-import net.eduSample.common.vo.User_histVO;
 import net.eduSample.sample.service.SampleService;
 import net.eduSample.sample.service.dao.SampleDAO;
 

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import lombok.extern.slf4j.Slf4j;
 import net.eduSample.common.vo.BoardVO;
 import net.eduSample.common.vo.UserVO;
-import net.eduSample.common.vo.User_histVO;
 import net.eduSample.sample.service.SampleService;
 
 @Controller
