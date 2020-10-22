@@ -11,6 +11,15 @@ public class UserVO {
 	private Date create_date;
 	private Date update_date;
 	private int verify;
+	private String comment;
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
 	public int getVerify() {
 		return verify;

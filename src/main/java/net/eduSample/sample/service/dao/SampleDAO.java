@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import net.eduSample.common.service.dao.BaseDAO;
 import net.eduSample.common.vo.BoardVO;
-import net.eduSample.common.vo.HistoryVO;
 import net.eduSample.common.vo.UserVO;
+import net.eduSample.common.vo.User_histVO;
 
 
 @Repository("SampleDAO")
@@ -29,16 +29,41 @@ public class SampleDAO {
 //		baseDAO.insert("userMapper.register");
 //	}
 	
+	// hist
+	public void register_hist(UserVO vo) throws Exception {
+		baseDAO.insert("userMapper.register_hist", vo);
+	}
+	
 	public UserVO login(UserVO vo) throws Exception {
 		return (UserVO)baseDAO.selectObject("userMapper.login", vo);
+	}
+	
+	// hist
+	public UserVO login_hist(UserVO vo) throws Exception {
+		return (UserVO)baseDAO.selectObject("userMapper.login_hist", vo);
+	}
+	
+	// hist
+	public UserVO logout_hist(UserVO vo) throws Exception {
+		return (UserVO)baseDAO.selectObject("userMapper.logout_hist", vo);
 	}
 	
 	public void modify(UserVO vo) throws Exception {
 		baseDAO.update("userMapper.modify", vo);
 	}
 	
+	//  hist
+	public void modify_hist(UserVO vo) throws Exception {
+		baseDAO.update("userMapper.modify_hist", vo);
+	}
+	
 	public void delete(UserVO vo) throws Exception {
 		baseDAO.delete("userMapper.delete", vo);
+	}
+	
+	// hist
+	public void delete_hist(UserVO vo) throws Exception {
+		baseDAO.delete("userMapper.delete_hist", vo);
 	}
 	
 	public List<UserVO> userAll() throws Exception {
@@ -76,15 +101,6 @@ public class SampleDAO {
 	}
 	
 	
-	// history
-	
-	public void Hist_register(HistoryVO hist) throws Exception {
-		baseDAO.insert("histMapper.Hist_register", hist);
-	}
-	
-	public void Hist_modify(HistoryVO hist) throws Exception {
-		baseDAO.update("histMapper.Hist_modify", hist);
-	}
 	
 	
 }

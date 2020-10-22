@@ -3,42 +3,51 @@ package net.eduSample.sample.service;
 import java.util.List;
 
 import net.eduSample.common.vo.BoardVO;
-import net.eduSample.common.vo.HistoryVO;
 import net.eduSample.common.vo.UserVO;
+import net.eduSample.common.vo.User_histVO;
 
 public interface SampleService {
-	
+
 	public String getForDatabaseTest() throws Exception;
-	
+
 	public void register(UserVO vo) throws Exception;
-	
+
 	public UserVO login(UserVO vo) throws Exception;
-	
+
 	public void modify(UserVO vo) throws Exception;
-	
+
 	public void delete(UserVO vo) throws Exception;
-	
+
 	public List<UserVO> userAll() throws Exception;
-	
+
 	public UserVO userRead(String identification) throws Exception;
-	
+
 	public UserVO userInfo(String userID) throws Exception;
-	
-	//Board
-	
+
+	// Board
+
 	public void BoardRegister(BoardVO board) throws Exception;
-	
+
 	public BoardVO read(Integer board_number) throws Exception;
-	
+
 	public void BoardUpdate(BoardVO board) throws Exception;
-	
+
 	public void BoardDelete(Integer board_number) throws Exception;
-	
+
 	public List<BoardVO> listAll() throws Exception;
-	
-	//hist
-	
-	public void Hist_register(HistoryVO hist) throws Exception;
-	
-	public void Hist_modify(HistoryVO hist) throws Exception;
+
+	// hist
+	public void register_hist(UserVO vo) throws Exception;
+
+	// hist
+	public UserVO login_hist(UserVO vo) throws Exception;
+
+	// hist
+	public UserVO logout_hist(UserVO vo) throws Exception;
+
+	// hist
+	public void modify_hist(UserVO vo) throws Exception;
+
+	// hist
+	public void delete_hist(UserVO vo) throws Exception;
 }

@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.eduSample.common.vo.BoardVO;
-import net.eduSample.common.vo.HistoryVO;
 import net.eduSample.common.vo.UserVO;
+import net.eduSample.common.vo.User_histVO;
 import net.eduSample.sample.service.SampleService;
 import net.eduSample.sample.service.dao.SampleDAO;
 
@@ -27,16 +27,17 @@ public class SampleServiceImpl implements SampleService {
 	}
 
 	// aop TEST 메서드
-	// @Transactional(propagation = Propagation.REQUIRED, rollbackFor={Exception.class}) 적용됨
+	// @Transactional(propagation = Propagation.REQUIRED,
+	// rollbackFor={Exception.class}) 적용됨
 	@Transactional(rollbackFor = { Exception.class })
 	@Override
 	public void register(UserVO vo) throws Exception {
 		try {
 			sampleDAO.register(vo);
-			BoardVO board = new BoardVO();
-			board.setBoard_number(1);
-			board.setTitle("transaction TEST");
-			sampleDAO.BoardUpdate(board);
+			// BoardVO board = new BoardVO();
+			// board.setBoard_number(1);
+			// board.setTitle("transaction TEST");
+			// sampleDAO.BoardUpdate(board);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception(); // Spring에 던져준다 (이거 있어야 rollback 처리됨)
@@ -105,14 +106,29 @@ public class SampleServiceImpl implements SampleService {
 		return (List<BoardVO>) sampleDAO.listAll();
 	}
 
-	@Override
-	public void Hist_register(HistoryVO hist) throws Exception {
-		sampleDAO.Hist_register(hist);
+	// hist
+	public void register_hist(UserVO vo) throws Exception {
+		sampleDAO.register_hist(vo);
 	}
 
-	@Override
-	public void Hist_modify(HistoryVO hist) throws Exception {
-		sampleDAO.Hist_modify(hist);
+	// hist
+	public UserVO login_hist(UserVO vo) throws Exception {
+		return (UserVO) sampleDAO.login_hist(vo);
+	}
+
+	// hist
+	public UserVO logout_hist(UserVO vo) throws Exception {
+		return (UserVO) sampleDAO.logout_hist(vo);
+	}
+
+	// hist
+	public void modify_hist(UserVO vo) throws Exception {
+		sampleDAO.modify_hist(vo);
+	}
+
+	// hist
+	public void delete_hist(UserVO vo) throws Exception {
+		sampleDAO.delete_hist(vo);
 	}
 
 }

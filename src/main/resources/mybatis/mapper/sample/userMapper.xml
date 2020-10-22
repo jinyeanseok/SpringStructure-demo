@@ -11,6 +11,12 @@
 		insert into user(identification, password, name, verify)
 		values( #{identification}, #{password}, #{name}, #{verify})
 	</insert>
+	
+	<!-- register_hist -->
+	<insert id="register_hist">
+		insert into user_hist(identification, password, name, verify, comment)
+		values( #{identification}, #{password}, #{name}, #{verify}, #{comment})
+	</insert>
 
 
 	<select id="login" resultType="UserVO">
@@ -18,18 +24,44 @@
 		from user
 		where identification = #{identification}
 	</select>
-
+	
+	<!-- login_hist -->
+	<insert id="login_hist">
+		insert into user_hist(identification, name, password, verify, comment)
+		values( #{identification}, #{name}, #{password}, #{verify}, #{comment})
+	</insert>
+	
+	<!-- logout_hist -->
+	<insert id="logout_hist">
+		insert into user_hist(comment, identification, name)
+		values( #{comment}, #{identification}, #{name})
+	</insert>
+	
+	
 	<update id="modify">
 		update user
 		set password = #{password}, update_date = now()
 		where identification = #{identification}
 	</update>
+	
+	<!-- modify_hist -->
+	<insert id="modify_hist">
+		insert into user_hist(identification, password, name, verify, comment)
+		values( #{identification}, #{password}, #{name}, #{verify}, #{comment})
+	</insert>
 
 	<delete id="delete">
 		delete
 		from user
 		where identification = #{identification} and password = #{password}
 	</delete>
+	
+	<!-- delete_hist -->
+	<insert id="delete_hist">
+		insert into user_hist(identification, password, name, verify, comment)
+		values( #{identification}, #{password}, #{name}, #{verify}, #{comment})
+	</insert>
+
 
 	<select id="userAll" resultType="UserVO">
 		select *

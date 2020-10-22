@@ -16,8 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 import net.eduSample.common.vo.BoardVO;
-import net.eduSample.common.vo.HistoryVO;
 import net.eduSample.common.vo.UserVO;
+import net.eduSample.common.vo.User_histVO;
 import net.eduSample.sample.service.SampleService;
 
 @Controller
@@ -48,9 +48,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPOST(UserVO vo, HistoryVO hist, RedirectAttributes ra) throws Exception {
+	public String registerPOST(UserVO vo,RedirectAttributes ra) throws Exception {
 		log.info("registerPOST");
 		sampleService.register(vo);
+		vo.setComment("회원가입");
+		sampleService.register_hist(vo);
 		// sampleService.Hist_modify(hist); // hist table
 		ra.addFlashAttribute("result", "registerOK");
 		// return "redirect:/login/form";
@@ -65,9 +67,19 @@ public class UserController {
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("modify POST");
+		
+		UserVO user = (UserVO) session.getAttribute("user"); // hist table 용
+		
 		System.out.println("vo : " + vo.getIdentification());
 		System.out.println("vo : " + vo.getPassword());
+		
 		sampleService.modify(vo);
+		
+		UserVO newPass = sampleService.login(user); // 변경된 비밀번호를 가져오기 위해 login메서드를 사용(select에 비밀번호도 포함됨)
+		
+		user.setPassword(newPass.getPassword()); // hist 테이블에 넣기 위함
+		user.setComment("회원수정"); // hist 테이블에 넣기 위함
+		sampleService.modify_hist(user); // hist 테이블에 수정요청
 		session.invalidate();
 		ra.addFlashAttribute("result", "modifyOK");
 		return "redirect:/login/form";
@@ -104,6 +116,12 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("logout!!");
+//		UserVO vo = new UserVO();
+		UserVO user = (UserVO) session.getAttribute("user");
+		user.setIdentification(user.getIdentification());
+		user.setName(user.getName());
+		user.setComment("로그아웃");
+		sampleService.logout_hist(user);
 		ra.addFlashAttribute("result", "logoutOK");
 		session.invalidate();
 		return "redirect:/login/form";
@@ -127,6 +145,8 @@ public class UserController {
 
 		if (oldPass.equals(newPass)) {
 			sampleService.delete(vo);
+			vo.setComment("회원삭제");
+			sampleService.delete_hist(vo);
 			session.invalidate();
 			ra.addFlashAttribute("result", "deleteOK");
 		}

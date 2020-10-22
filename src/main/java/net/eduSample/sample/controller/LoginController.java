@@ -86,6 +86,9 @@ public class LoginController {
 		try {
 			HttpSession session = req.getSession();
 			UserVO login = sampleService.login(vo);
+			vo.setComment("로그인");
+			sampleService.login_hist(vo);
+			log.info("comment의 값은? : " + vo.getComment());
 			boolean result = false;
 			if(login.getPassword().equals(vo.getPassword())) {
 				result = true;
