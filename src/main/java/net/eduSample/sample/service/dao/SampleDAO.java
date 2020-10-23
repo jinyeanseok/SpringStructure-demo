@@ -28,11 +28,6 @@ public class SampleDAO {
 //		baseDAO.insert("userMapper.register");
 //	}
 	
-	// hist
-	public void register_hist(UserVO vo) throws Exception {
-		baseDAO.insert("userMapper.register_hist", vo);
-	}
-	
 	public UserVO login(UserVO vo) throws Exception {
 		return (UserVO)baseDAO.selectObject("userMapper.login", vo);
 	}

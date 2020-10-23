@@ -36,9 +36,6 @@ public interface SampleService {
 	public List<BoardVO> listAll() throws Exception;
 
 	// hist user
-	public void register_hist(UserVO vo) throws Exception;
-
-	// hist
 	public UserVO login_hist(UserVO vo) throws Exception;
 
 	// hist

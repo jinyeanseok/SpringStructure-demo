@@ -52,7 +52,6 @@ public class UserController {
 		log.info("registerPOST");
 		sampleService.register(vo);
 		vo.setComment("회원가입");
-		sampleService.register_hist(vo);
 		// sampleService.Hist_modify(hist); // hist table
 		ra.addFlashAttribute("result", "registerOK");
 		// return "redirect:/login/form";

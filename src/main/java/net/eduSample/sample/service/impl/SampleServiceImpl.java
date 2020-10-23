@@ -107,12 +107,6 @@ public class SampleServiceImpl implements SampleService {
 
 	// hist user
 	@Override
-	public void register_hist(UserVO vo) throws Exception {
-		sampleDAO.register_hist(vo);
-	}
-
-	// hist
-	@Override
 	public UserVO login_hist(UserVO vo) throws Exception {
 		return (UserVO) sampleDAO.login_hist(vo);
 	}
