@@ -12,13 +12,6 @@
 		values( #{identification}, #{password}, #{name}, #{verify})
 	</insert>
 	
-	<!-- register_hist -->
-	<insert id="register_hist">
-		insert into user_hist(identification, password, name, verify, comment)
-		values( #{identification}, #{password}, #{name}, #{verify}, #{comment})
-	</insert>
-
-
 	<select id="login" resultType="UserVO">
 		select identification, name, password, verify, user_number
 		from user
