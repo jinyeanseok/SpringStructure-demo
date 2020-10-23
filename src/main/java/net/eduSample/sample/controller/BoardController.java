@@ -77,7 +77,9 @@ public class BoardController {
 		BoardVO board = sampleService.read(board_number);
 
 		UserVO user = (UserVO) session.getAttribute("user"); // hist table 용
+		log.info("글 번호 : " + board_number);
 		Integer key = user.getUser_number();
+		
 		board.setUser_number(key);
 		board.setComment("글 보기");
 		board.setBoard_number(board_number);
