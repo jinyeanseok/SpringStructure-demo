@@ -8,6 +8,15 @@ public class BoardVO {
 	private String title;
 	private String identification;
 	private Date create_date;
+	private String comment;
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
 	public Integer getBoard_number() {
 		return board_number;

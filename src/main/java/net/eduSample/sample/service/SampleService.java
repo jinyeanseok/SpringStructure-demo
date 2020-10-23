@@ -35,7 +35,7 @@ public interface SampleService {
 
 	public List<BoardVO> listAll() throws Exception;
 
-	// hist
+	// hist user
 	public void register_hist(UserVO vo) throws Exception;
 
 	// hist
@@ -49,4 +49,25 @@ public interface SampleService {
 
 	// hist
 	public void delete_hist(UserVO vo) throws Exception;
+
+	// hist board
+	public void BoardRegister_hist(BoardVO board) throws Exception;
+
+	// hist
+	public BoardVO read_hist(BoardVO board) throws Exception;
+
+	// hist
+	public void BoardUpdate_hist(BoardVO board) throws Exception;
+
+	// hist
+	public void BoardDelete_hist(BoardVO board) throws Exception;
+	//
+	// // hist
+	// public void BoardUpdate_hist(BoardVO board) throws Exception;
+	//
+	// // hist
+	// public void BoardDelete_hist(Integer board_number) throws Exception;
+	//
+	// // hist
+	// public List<BoardVO> listAll_hist() throws Exception;
 }

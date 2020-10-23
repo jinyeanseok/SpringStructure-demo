@@ -86,13 +86,21 @@ public class LoginController {
 		try {
 			HttpSession session = req.getSession();
 			UserVO login = sampleService.login(vo);
-			vo.setComment("로그인");
-			sampleService.login_hist(vo);
-			log.info("comment의 값은? : " + vo.getComment());
+			
+			
+//			vo.setComment("로그인");
+//			sampleService.login_hist(vo);
+//			log.info("comment의 값은? : " + vo.getComment());
 			boolean result = false;
 			if(login.getPassword().equals(vo.getPassword())) {
 				result = true;
 				session.setAttribute("user", login);
+				UserVO user = (UserVO) session.getAttribute("user"); // hist용
+				Integer key = user.getUser_number();
+				vo.setUser_number(key);
+				vo.setComment("로그인");
+				sampleService.login_hist(vo);
+				// sampleService.login_hist(key);
 			} else {
 				result = false;
 				session.setAttribute("user", null);

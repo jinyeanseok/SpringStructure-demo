@@ -23,8 +23,9 @@
 		values( #{title}, #{identification}, #{user_number})
 	</insert>
 	
+	<!-- hist -->
 	<insert id="create_hist">
-		insert into board (title, identification, user_number, comment)
+		insert into board_hist (title, identification, user_number, comment)
 		values( #{title}, #{identification}, #{user_number}, #{comment})
 	</insert>
 	
@@ -34,6 +35,12 @@
 		from board
 		where board_number = #{board_number}
 	</select>
+	
+	<!-- hist -->
+	<insert id="read_hist">
+		insert into board_hist (board_number, user_number, comment)
+		values( #{board_number}, #{user_number}, #{comment})
+	</insert>
     
 	<!-- 행 수정 -->
 	<update id="Boardupdate">
@@ -42,9 +49,10 @@
 		where board_number = #{board_number} <!-- transaction TEST로 board_number를 board_numbe로 변경 -->
 	</update>
 	
+	<!-- hist -->
 	<insert id="Boardupdate_hist">
-		insert into board_hist (title, identification, user_number, comment)
-		values( #{title}, #{identification}, #{user_number}, #{comment})
+		insert into board_hist (board_number, user_number, comment)
+		values( #{board_number}, #{user_number}, #{comment})
 	</insert>
     
 	<!-- 행 삭제 -->
@@ -52,9 +60,10 @@
 		delete from board where board_number = #{board_number}
 	</delete>
 	
+	<!-- hist -->
 	<insert id="Boarddelete_hist">
-		insert into board_hist (title, identification, user_number, comment)
-		values( #{title}, #{identification}, #{user_number}, #{comment})
+		insert into board_hist (board_number, user_number, comment)
+		values( #{board_number}, #{user_number}, #{comment})
 	</insert>
     
 	<!-- board 전체 행 조회 -->

@@ -3,6 +3,7 @@ package net.eduSample.sample.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -66,19 +67,14 @@ public class UserController {
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(UserVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("modify POST");
-		
 		UserVO user = (UserVO) session.getAttribute("user"); // hist table 용
-		
 		System.out.println("vo : " + vo.getIdentification());
 		System.out.println("vo : " + vo.getPassword());
-		
 		sampleService.modify(vo);
-		
-		UserVO newPass = sampleService.login(user); // 변경된 비밀번호를 가져오기 위해 login메서드를 사용(select에 비밀번호도 포함됨)
-		
-		user.setPassword(newPass.getPassword()); // hist 테이블에 넣기 위함
-		user.setComment("회원수정"); // hist 테이블에 넣기 위함
-		sampleService.modify_hist(user); // hist 테이블에 수정요청
+		Integer key = user.getUser_number();
+		user.setUser_number(key);
+		user.setComment("비밀번호 변경");
+		sampleService.modify_hist(user);
 		session.invalidate();
 		ra.addFlashAttribute("result", "modifyOK");
 		return "redirect:/login/form";
@@ -115,10 +111,9 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, RedirectAttributes ra) throws Exception {
 		log.info("logout!!");
-//		UserVO vo = new UserVO();
-		UserVO user = (UserVO) session.getAttribute("user");
-		user.setIdentification(user.getIdentification());
-		user.setName(user.getName());
+		UserVO user = (UserVO) session.getAttribute("user"); // hist용
+		Integer key = user.getUser_number();
+		user.setUser_number(key);
 		user.setComment("로그아웃");
 		sampleService.logout_hist(user);
 		ra.addFlashAttribute("result", "logoutOK");
@@ -144,8 +139,10 @@ public class UserController {
 
 		if (oldPass.equals(newPass)) {
 			sampleService.delete(vo);
-			vo.setComment("회원삭제");
-			sampleService.delete_hist(vo);
+			Integer key = user.getUser_number();
+			user.setUser_number(key);
+			user.setComment("회원삭제");
+			sampleService.delete_hist(user);
 			session.invalidate();
 			ra.addFlashAttribute("result", "deleteOK");
 		}

@@ -33,10 +33,10 @@ public class SampleServiceImpl implements SampleService {
 	public void register(UserVO vo) throws Exception {
 		try {
 			sampleDAO.register(vo);
-			// BoardVO board = new BoardVO();
-			// board.setBoard_number(1);
-			// board.setTitle("transaction TEST");
-			// sampleDAO.BoardUpdate(board);
+			 BoardVO board = new BoardVO();
+			 board.setBoard_number(1);
+			 board.setTitle("transaction TEST");
+			 sampleDAO.BoardUpdate(board);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception(); // Spring에 던져준다 (이거 있어야 rollback 처리됨)
@@ -105,29 +105,69 @@ public class SampleServiceImpl implements SampleService {
 		return (List<BoardVO>) sampleDAO.listAll();
 	}
 
-	// hist
+	// hist user
+	@Override
 	public void register_hist(UserVO vo) throws Exception {
 		sampleDAO.register_hist(vo);
 	}
 
 	// hist
+	@Override
 	public UserVO login_hist(UserVO vo) throws Exception {
 		return (UserVO) sampleDAO.login_hist(vo);
 	}
 
 	// hist
+	@Override
 	public UserVO logout_hist(UserVO vo) throws Exception {
 		return (UserVO) sampleDAO.logout_hist(vo);
 	}
 
 	// hist
+	@Override
 	public void modify_hist(UserVO vo) throws Exception {
 		sampleDAO.modify_hist(vo);
 	}
 
 	// hist
+	@Override
 	public void delete_hist(UserVO vo) throws Exception {
 		sampleDAO.delete_hist(vo);
 	}
+
+	// hist board
+	@Override
+	public void BoardRegister_hist(BoardVO board) throws Exception {
+		sampleDAO.BoardRegister_hist(board);
+	}
+
+	// hist
+	@Override
+	public BoardVO read_hist(BoardVO board) throws Exception {
+		return (BoardVO) sampleDAO.read_hist(board);
+	}
+
+	// hist
+	@Override
+	public void BoardUpdate_hist(BoardVO board) throws Exception {
+		sampleDAO.BoardUpdate_hist(board);
+	}
+
+	// hist
+	public void BoardDelete_hist(BoardVO board) throws Exception {
+		sampleDAO.BoardDelete_hist(board);
+	}
+
+	// // hist
+	// @Override
+	// public void BoardUpdate_hist(BoardVO board) throws Exception;
+	//
+	// // hist
+	// @Override
+	// public void BoardDelete_hist(Integer board_number) throws Exception;
+	//
+	// // hist
+	// @Override
+	// public List<BoardVO> listAll_hist() throws Exception;
 
 }

@@ -77,27 +77,53 @@ public class SampleDAO {
 		return (UserVO)baseDAO.selectObject("userMapper.userInfo", userID);
 	}
 	
-	//Board
 	
+	// Board
 	public void BoardRegister(BoardVO board) throws Exception {
 		baseDAO.insert("BoardMapper.create", board);
+	}
+	
+	// hist
+	public void BoardRegister_hist(BoardVO board) throws Exception {
+		baseDAO.insert("BoardMapper.create_hist", board);
 	}
 	
 	public BoardVO read(Integer board_number) throws Exception {
 		return (BoardVO)baseDAO.selectObject("BoardMapper.read", board_number);
 	}
 	
+	// hist
+//	public BoardVO read_hist(Integer board_number) throws Exception {
+//		return (BoardVO)baseDAO.selectObject("BoardMapper.read_hist", board_number);
+//	}
+	
+	// hist
+	public BoardVO read_hist(BoardVO board) throws Exception {
+		return (BoardVO)baseDAO.selectObject("BoardMapper.read_hist", board);
+	}
+	
 	public void BoardUpdate(BoardVO board) throws Exception {
 		baseDAO.update("BoardMapper.Boardupdate", board);
+	}
+	
+	// hist
+	public void BoardUpdate_hist(BoardVO board) throws Exception {
+		baseDAO.update("BoardMapper.Boardupdate_hist", board);
 	}
 	
 	public void BoardDelete(Integer board_number) throws Exception {
 		baseDAO.delete("BoardMapper.Boarddelete", board_number);
 	}
 	
+	// hist
+	public void BoardDelete_hist(BoardVO board) throws Exception {
+		baseDAO.delete("BoardMapper.Boarddelete_hist", board);
+	}
+	
 	public List<BoardVO> listAll() throws Exception {
 		return (List<BoardVO>)baseDAO.selectList("BoardMapper.listAll", "");
 	}
+	
 	
 	
 	

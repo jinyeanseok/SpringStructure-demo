@@ -27,14 +27,14 @@
 	
 	<!-- login_hist -->
 	<insert id="login_hist">
-		insert into user_hist(identification, name, password, verify, comment)
-		values( #{identification}, #{name}, #{password}, #{verify}, #{comment})
+		insert into user_hist1(user_number, comment)
+		values(#{user_number}, #{comment})
 	</insert>
 	
 	<!-- logout_hist -->
 	<insert id="logout_hist">
-		insert into user_hist(comment, identification, name)
-		values( #{comment}, #{identification}, #{name})
+		insert into user_hist1(user_number, comment)
+		values(#{user_number}, #{comment})
 	</insert>
 	
 	
@@ -46,8 +46,8 @@
 	
 	<!-- modify_hist -->
 	<insert id="modify_hist">
-		insert into user_hist(identification, password, name, verify, comment)
-		values( #{identification}, #{password}, #{name}, #{verify}, #{comment})
+		insert into user_hist1(user_number, comment)
+		values(#{user_number}, #{comment})
 	</insert>
 
 	<delete id="delete">
@@ -58,8 +58,8 @@
 	
 	<!-- delete_hist -->
 	<insert id="delete_hist">
-		insert into user_hist(identification, password, name, verify, comment)
-		values( #{identification}, #{password}, #{name}, #{verify}, #{comment})
+		insert into user_hist1(user_number, comment)
+		values(#{user_number}, #{comment})
 	</insert>
 
 
