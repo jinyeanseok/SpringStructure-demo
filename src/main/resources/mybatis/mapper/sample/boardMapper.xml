@@ -94,7 +94,8 @@
 		his.comment AS comment
 	FROM board bor INNER JOIN board_hist his
 	ON bor.board_number = his.board_number
-	WHERE his.user_number = #{user_number};
+	WHERE his.user_number = #{user_number}
+	ORDER BY his.create_date desc
 	</select>
 
 </mapper>
