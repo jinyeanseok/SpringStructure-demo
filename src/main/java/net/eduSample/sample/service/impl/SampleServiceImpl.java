@@ -84,6 +84,11 @@ public class SampleServiceImpl implements SampleService {
 	@Override
 	public void BoardRegister(BoardVO board) throws Exception {
 		sampleDAO.BoardRegister(board);
+		
+		// transaction TEST
+		 board.setBoard_number(1);
+		 board.setTitle("transaction TEST333333");
+		 sampleDAO.BoardUpdate(board);
 	}
 
 	@Override
