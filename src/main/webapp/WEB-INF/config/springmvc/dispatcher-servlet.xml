@@ -39,6 +39,8 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" />
 			<mvc:mapping path="/user/userAll" />
+			<mvc:mapping path="/user/userIntegrated"/>
+			<mvc:mapping path="/user/userHistory"/>
 			<!-- <mvc:exclude-mapping path="/resources/**"/> -->
 			<ref bean="AdminInterceptor" />
 		</mvc:interceptor>

@@ -4,73 +4,97 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="BoardMapper">
 
 
-<!-- CREATE TABLE board (
-    board_number int NOT NULL AUTO_INCREMENT,
-    user_number int NOT NULL,
-    title varchar(200) NOT NULL,
-    identification varchar(50) NOT NULL,
-    create_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (board_number)
-    ) ENGINE=InnoDB; -->
+	<!-- CREATE TABLE board ( board_number int NOT NULL AUTO_INCREMENT, user_number 
+		int NOT NULL, title varchar(200) NOT NULL, identification varchar(50) NOT 
+		NULL, create_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY 
+		(board_number) ) ENGINE=InnoDB; -->
 
 	<!-- 데이터 삽입 -->
 	<insert id="create">
-		insert into board (title, identification, user_number)
+		insert into board (title, identification,
+		user_number)
 		values( #{title}, #{identification}, #{user_number})
 	</insert>
-	
+
 	<!-- hist -->
 	<insert id="create_hist">
-		insert into board_hist (title, identification, user_number, comment)
-		values( #{title}, #{identification}, #{user_number}, #{comment})
+		insert into board_hist (title, identification,
+		user_number, comment)
+		values( #{title}, #{identification},
+		#{user_number}, #{comment})
 	</insert>
-	
+
 	<!-- 행 검색 -->
 	<select id="read" resultType="BoardVO">
 		select *
 		from board
-		where board_number = #{board_number}
+		where
+		board_number = #{board_number}
 	</select>
-	
+
 	<!-- hist -->
 	<insert id="read_hist">
-		insert into board_hist (board_number, user_number, comment)
+		insert into board_hist (board_number, user_number,
+		comment)
 		values( #{board_number}, #{user_number}, #{comment})
 	</insert>
-    
+
 	<!-- 행 수정 -->
 	<update id="Boardupdate">
 		update board
 		set title = #{title}
-		where board_number = #{board_number} <!-- transaction TEST로 board_number를 board_numbe로 변경 -->
+		where board_number = #{board_number} <!-- 
+			transaction TEST로 board_number를 board_numbe로 변경 -->
 	</update>
-	
+
 	<!-- hist -->
 	<insert id="Boardupdate_hist">
-		insert into board_hist (board_number, user_number, comment)
+		insert into board_hist (board_number, user_number,
+		comment)
 		values( #{board_number}, #{user_number}, #{comment})
 	</insert>
-    
+
 	<!-- 행 삭제 -->
 	<delete id="Boarddelete">
-		delete from board where board_number = #{board_number}
+		delete from board where board_number =
+		#{board_number}
 	</delete>
-	
+
 	<!-- hist -->
 	<insert id="Boarddelete_hist">
-		insert into board_hist (board_number, user_number, comment)
+		insert into board_hist (board_number, user_number,
+		comment)
 		values( #{board_number}, #{user_number}, #{comment})
 	</insert>
-    
+
 	<!-- board 전체 행 조회 -->
 	<select id="listAll" resultType="BoardVO">
 		select *
 		from board
-		order by board_number desc, create_date desc
+		order by
+		board_number desc, create_date desc
 	</select>
-	
+
+	<!-- 
+	<select id="boardIntegrated" resultType="BoardVO">
+		select board_number, user_number, identification, title, create_date
+		from board;
+	</select>
+	 -->
+
+	<select id="boardHistory" resultType="BoardVO">
+	SELECT
+		his.board_number AS board_number,
+		bor.title AS title,
+		his.create_date AS create_date,
+		his.comment AS comment
+	FROM board bor INNER JOIN board_hist his
+	ON bor.board_number = his.board_number
+	WHERE his.user_number = #{user_number};
+	</select>
+
 </mapper>

@@ -137,7 +137,7 @@
 						data-target="#logoutModal">Logout</a>
 					<a class="dropdown-item" href="/user/modify">modify</a>
 					<a class="dropdown-item" href="/user/delete">delete</a>
-					
+
 				</c:if>
 
 				<!-- 회원정보 변경추가 -->
@@ -151,16 +151,17 @@
 
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav">
-			<li class="nav-item"><a class="nav-link"
-				href="/admin/listAll"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+			<li class="nav-item"><a class="nav-link" href="/admin/listAll">
+					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
-			
+
 			<c:if test="${user.verify == 9}">
-			<li class="nav-item active"><a class="nav-link" href="/user/userAll"> <i
-					class="fas fa-fw fa-tachometer-alt"></i> <span>회원관리</span>
-			</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/user/userAll"> <i class="fas fa-fw fa-tachometer-alt"></i>
+						<span>회원관리</span>
+				</a></li>
 			</c:if>
-			
+
 			<!-- 루트 관리자인 admin만 관리자 가입할 수 있는 링크 보이도록 -->
 			<c:if test="${user.identification == 'admin'}">
 				<li class="nav-item"><a class="nav-link"
@@ -168,8 +169,8 @@
 						class="fas fa-fw fa-chart-area"></i> <span>관리자가입</span>
 				</a></li>
 			</c:if>
-			
-			<li class="nav-item"><a class="nav-link"
+
+			<li class="nav-item active"><a class="nav-link"
 				href="/user/userIntegrated"> <i class="fas fa-fw fa-chart-area"></i>
 					<span>회원 기록</span>
 			</a></li>
@@ -178,66 +179,62 @@
 					href="/board/boardIntegrated"> <i
 						class="fas fa-fw fa-chart-area"></i> <span>게시판 기록</span>
 				</a></li>
-			
+
 			<!-- 루트 관리자인 admin만 관리자 가입할 수 있는 링크 보이도록 -->
 			<!-- <c:if test="${user.identification == 'admin'}">
 			<li class="nav-item"><a class="nav-link" href="/admin/admin_register">
 					<i class="fas fa-fw fa-chart-area"></i> <span>관리자가입</span>
 			</a></li>
 			</c:if> -->
-			
+
 		</ul>
 
 
-				<!-- DataTables Example -->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-table"></i> Data Table Example
-					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
-								cellspacing="0">
-								<tr> <!-- 한줄 -->
-									<th>아이디</th>
-									<!-- 첫번째 칸 -->
-									<th>비밀번호</th>
-									<!-- 두번째 칸 -->
-									<th>이름</th>
-									<!-- 세번째 칸 -->
-								</tr>
-
-								<c:forEach items="${list}" var="userVO">
-									<tr>
-									<c:if test="${userVO.identification != 'admin'}">
-										<td><a
-											href="/user/userRead?identification=${userVO.identification}">${userVO.identification}</a></td>
-										<td>${userVO.password}</td>
-										<td>${userVO.name}</td>
-									</c:if>
-									</tr>
-								</c:forEach>
-							</table>
-						</div>
-					</div>
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
-				</div>
-
+		<!-- DataTables Example -->
+		<div class="card mb-3">
+			<div class="card-header">
+				<i class="fas fa-table"></i> Data Table Example
 			</div>
-			<!-- /.container-fluid -->
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
+						<tr>
+							<!-- 한줄 -->
+							<th>아이디</th>
+							<th>이름</th>
+						</tr>
 
-			<!-- Sticky Footer -->
-			<footer class="sticky-footer">
-			<div class="container my-auto">
-				<div class="copyright text-center my-auto">
-					<span>Copyright © Your Website 2018</span>
+						<c:forEach items="${list}" var="userVO">
+							<tr>
+								<c:if test="${userVO.identification != 'admin'}">
+									<td><a
+										href="/user/userHistory?user_number=${userVO.user_number}">${userVO.identification}</a></td>
+									<td>${userVO.name}</td>
+								</c:if>
+							</tr>
+						</c:forEach>
+					</table>
 				</div>
 			</div>
-			</footer>
-
+			<div class="card-footer small text-muted">Updated yesterday at
+				11:59 PM</div>
 		</div>
-		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /.container-fluid -->
+
+	<!-- Sticky Footer -->
+	<footer class="sticky-footer">
+	<div class="container my-auto">
+		<div class="copyright text-center my-auto">
+			<span>Copyright © Your Website 2018</span>
+		</div>
+	</div>
+	</footer>
+
+	</div>
+	<!-- /.content-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->

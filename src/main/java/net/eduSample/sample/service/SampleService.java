@@ -22,6 +22,10 @@ public interface SampleService {
 	public UserVO userRead(String identification) throws Exception;
 
 	public UserVO userInfo(String userID) throws Exception;
+	
+	public List<UserVO> userIntegrated() throws Exception;
+	
+	public List<UserVO> userHistory(Integer user_number) throws Exception;
 
 	// Board
 
@@ -67,4 +71,8 @@ public interface SampleService {
 	//
 	// // hist
 	// public List<BoardVO> listAll_hist() throws Exception;
+	
+	public List<BoardVO> boardIntegrated() throws Exception;
+	
+	public List<BoardVO> boardHistory(Integer board_number) throws Exception; 
 }

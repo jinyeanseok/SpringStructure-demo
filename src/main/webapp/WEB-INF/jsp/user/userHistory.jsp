@@ -156,7 +156,7 @@
 			</a></li>
 			
 			<c:if test="${user.verify == 9}">
-			<li class="nav-item active"><a class="nav-link" href="/user/userAll"> <i
+			<li class="nav-item"><a class="nav-link" href="/user/userAll"> <i
 					class="fas fa-fw fa-tachometer-alt"></i> <span>회원관리</span>
 			</a></li>
 			</c:if>
@@ -169,7 +169,7 @@
 				</a></li>
 			</c:if>
 			
-			<li class="nav-item"><a class="nav-link"
+			<li class="nav-item active"><a class="nav-link"
 				href="/user/userIntegrated"> <i class="fas fa-fw fa-chart-area"></i>
 					<span>회원 기록</span>
 			</a></li>
@@ -198,22 +198,20 @@
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
-								<tr> <!-- 한줄 -->
-									<th>아이디</th>
-									<!-- 첫번째 칸 -->
-									<th>비밀번호</th>
-									<!-- 두번째 칸 -->
-									<th>이름</th>
-									<!-- 세번째 칸 -->
+								<tr>
+									<th>ID</th>
+									<th>NAME</th>
+									<th>DATE</th>
+									<th>COMMENT</th>
 								</tr>
 
 								<c:forEach items="${list}" var="userVO">
 									<tr>
 									<c:if test="${userVO.identification != 'admin'}">
-										<td><a
-											href="/user/userRead?identification=${userVO.identification}">${userVO.identification}</a></td>
-										<td>${userVO.password}</td>
+										<td>${userVO.identification}</td>
 										<td>${userVO.name}</td>
+										<td><fmt:formatDate value="${userVO.create_date}" pattern="yyyy-MM-dd KK:mm:ss"/></td>
+										<td>${userVO.comment}</td>
 									</c:if>
 									</tr>
 								</c:forEach>

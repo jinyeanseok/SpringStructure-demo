@@ -72,6 +72,14 @@ public class SampleDAO {
 		return (UserVO)baseDAO.selectObject("userMapper.userInfo", userID);
 	}
 	
+	public List<UserVO> userIntegrated() throws Exception { 
+		return (List<UserVO>)baseDAO.selectList("userMapper.userIntegrated", "");
+	}
+	
+	public List<UserVO> userHistory(Integer user_number) throws Exception { 
+		return (List<UserVO>)baseDAO.selectList("userMapper.userHistory", user_number);
+	}
+	
 	
 	// Board
 	public void BoardRegister(BoardVO board) throws Exception {
@@ -118,6 +126,15 @@ public class SampleDAO {
 	public List<BoardVO> listAll() throws Exception {
 		return (List<BoardVO>)baseDAO.selectList("BoardMapper.listAll", "");
 	}
+	
+	public List<BoardVO> boardIntegrated() throws Exception { 
+		return (List<BoardVO>)baseDAO.selectList("BoardMapper.boardIntegrated", "");
+	}
+	
+	public List<BoardVO> boardHistory(Integer board_number) throws Exception { 
+		return (List<BoardVO>)baseDAO.selectList("BoardMapper.boardHistory", board_number);
+	}
+	
 	
 	
 	

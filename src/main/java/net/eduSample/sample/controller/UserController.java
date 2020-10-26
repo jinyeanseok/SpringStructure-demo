@@ -180,6 +180,21 @@ public class UserController {
 		List<UserVO> users = sampleService.userAll();
 		model.addAttribute("list", users);
 	}
+	
+	@RequestMapping(value = "/userIntegrated", method = RequestMethod.GET)
+	public void userIntegrated(ModelMap model) throws Exception {
+		log.info("userIntegrated!!!");
+		List<UserVO> users = sampleService.userIntegrated();
+		model.addAttribute("list", users);
+	}
+	
+	@RequestMapping(value = "/userHistory", method = RequestMethod.GET)
+	public void userHistory(@RequestParam("user_number") Integer user_number,  ModelMap model) throws Exception {
+		log.info("userHistory!!!");
+		List<UserVO> users = sampleService.userHistory(user_number);
+		model.addAttribute("list", users);
+	}
+	
 
 	@RequestMapping(value = "/userRead", method = RequestMethod.GET)
 	public void userRead(@RequestParam("identification") String identification, ModelMap model) throws Exception {

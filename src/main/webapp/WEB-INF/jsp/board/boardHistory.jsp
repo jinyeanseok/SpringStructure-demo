@@ -156,7 +156,7 @@
 			</a></li>
 			
 			<c:if test="${user.verify == 9}">
-			<li class="nav-item active"><a class="nav-link" href="/user/userAll"> <i
+			<li class="nav-item"><a class="nav-link" href="/user/userAll"> <i
 					class="fas fa-fw fa-tachometer-alt"></i> <span>회원관리</span>
 			</a></li>
 			</c:if>
@@ -174,7 +174,7 @@
 					<span>회원 기록</span>
 			</a></li>
 			
-			<li class="nav-item"><a class="nav-link"
+			<li class="nav-item active"><a class="nav-link"
 					href="/board/boardIntegrated"> <i
 						class="fas fa-fw fa-chart-area"></i> <span>게시판 기록</span>
 				</a></li>
@@ -198,22 +198,20 @@
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
-								<tr> <!-- 한줄 -->
-									<th>아이디</th>
-									<!-- 첫번째 칸 -->
-									<th>비밀번호</th>
-									<!-- 두번째 칸 -->
-									<th>이름</th>
-									<!-- 세번째 칸 -->
+								<tr>
+									<th>BOARD_NO</th>
+									<th>TITLE</th>
+									<th>COMMENT</th>
+									<th>DATE</th>
 								</tr>
 
-								<c:forEach items="${list}" var="userVO">
+								<c:forEach items="${list}" var="boardVO">
 									<tr>
 									<c:if test="${userVO.identification != 'admin'}">
-										<td><a
-											href="/user/userRead?identification=${userVO.identification}">${userVO.identification}</a></td>
-										<td>${userVO.password}</td>
-										<td>${userVO.name}</td>
+										<td>${boardVO.board_number}</td>
+										<td>${boardVO.title}</td>
+										<td>${boardVO.comment}</td>
+										<td><fmt:formatDate value="${boardVO.create_date}" pattern="yyyy-MM-dd KK:mm:ss"/></td>
 									</c:if>
 									</tr>
 								</c:forEach>

@@ -8,35 +8,39 @@
 <mapper namespace="userMapper">
 
 	<insert id="register">
-		insert into user(identification, password, name, verify)
+		insert into user(identification, password, name,
+		verify)
 		values( #{identification}, #{password}, #{name}, #{verify})
 	</insert>
-	
+
 	<select id="login" resultType="UserVO">
-		select identification, name, password, verify, user_number
+		select identification, name,
+		password, verify, user_number
 		from user
-		where identification = #{identification}
+		where identification =
+		#{identification}
 	</select>
-	
+
 	<!-- login_hist -->
 	<insert id="login_hist">
 		insert into user_hist1(user_number, comment)
 		values(#{user_number}, #{comment})
 	</insert>
-	
+
 	<!-- logout_hist -->
 	<insert id="logout_hist">
 		insert into user_hist1(user_number, comment)
 		values(#{user_number}, #{comment})
 	</insert>
-	
-	
+
+
 	<update id="modify">
 		update user
-		set password = #{password}, update_date = now()
+		set password = #{password}, update_date =
+		now()
 		where identification = #{identification}
 	</update>
-	
+
 	<!-- modify_hist -->
 	<insert id="modify_hist">
 		insert into user_hist1(user_number, comment)
@@ -46,9 +50,10 @@
 	<delete id="delete">
 		delete
 		from user
-		where identification = #{identification} and password = #{password}
+		where identification =
+		#{identification} and password = #{password}
 	</delete>
-	
+
 	<!-- delete_hist -->
 	<insert id="delete_hist">
 		insert into user_hist1(user_number, comment)
@@ -59,7 +64,8 @@
 	<select id="userAll" resultType="UserVO">
 		select *
 		from user
-		order by identification desc
+		order by
+		identification desc
 	</select>
 
 	<select id="userRead" resultType="UserVO">
@@ -72,6 +78,26 @@
 	<select id="userInfo" resultType="UserVO">
 		select password
 		from user
-		where identification = #{identification}
+		where
+		identification = #{identification}
+	</select>
+
+	<select id="userIntegrated" resultType="UserVO">
+		SELECT *
+		FROM user
+	</select>
+	
+	<select id="userHistory" resultType="UserVO">
+	SELECT
+		usr.user_number AS user_number,
+		usr.identification AS identification,
+		usr.name AS name,
+		his.create_date AS
+		create_date,
+		his.comment comment
+	FROM user usr
+	INNER JOIN user_hist1 his ON usr.user_number = his.user_number
+	WHERE usr.user_number = #{user_number}
+	ORDER BY his.create_date desc;
 	</select>
 </mapper>

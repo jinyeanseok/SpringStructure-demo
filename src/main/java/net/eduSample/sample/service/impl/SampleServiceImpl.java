@@ -71,6 +71,14 @@ public class SampleServiceImpl implements SampleService {
 	public UserVO userInfo(String userID) throws Exception {
 		return (UserVO) sampleDAO.userInfo(userID);
 	}
+	
+	public List<UserVO> userIntegrated() throws Exception {
+		return (List<UserVO>) sampleDAO.userIntegrated();
+	}
+	
+	public List<UserVO> userHistory(Integer user_number) throws Exception { 
+		return (List<UserVO>) sampleDAO.userHistory(user_number);
+	}
 
 	@Override
 	public void BoardRegister(BoardVO board) throws Exception {
@@ -163,5 +171,13 @@ public class SampleServiceImpl implements SampleService {
 	// // hist
 	// @Override
 	// public List<BoardVO> listAll_hist() throws Exception;
+	
+	public List<BoardVO> boardIntegrated() throws Exception { 
+		return (List<BoardVO>) sampleDAO.boardIntegrated();
+	}
+	
+	public List<BoardVO> boardHistory(Integer board_number) throws Exception { 
+		return (List<BoardVO>) sampleDAO.boardHistory(board_number);
+	}
 
 }

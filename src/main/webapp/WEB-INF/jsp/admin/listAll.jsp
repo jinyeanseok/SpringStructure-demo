@@ -168,6 +168,16 @@
 						class="fas fa-fw fa-chart-area"></i> <span>관리자가입</span>
 				</a></li>
 			</c:if>
+			
+				<li class="nav-item"><a class="nav-link"
+					href="/user/userIntegrated"> <i
+						class="fas fa-fw fa-chart-area"></i> <span>회원 기록</span>
+				</a></li>
+				
+				<li class="nav-item"><a class="nav-link"
+					href="/board/boardIntegrated"> <i
+						class="fas fa-fw fa-chart-area"></i> <span>게시판 기록</span>
+				</a></li>
 
 		</ul>
 

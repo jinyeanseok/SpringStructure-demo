@@ -80,6 +80,9 @@ public class BoardController {
 		log.info("글 번호 : " + board_number);
 		Integer key = user.getUser_number();
 		
+		// 로그인 안하고 글 읽으면 에러나기 때문에 key에 값이 없으면 hist table은 건너 뛰는걸로
+		
+		
 		board.setUser_number(key);
 		board.setComment("글 보기");
 		board.setBoard_number(board_number);
@@ -132,6 +135,20 @@ public class BoardController {
 		sampleService.BoardDelete_hist(board);
 		ra.addFlashAttribute("result", "Board_deleteOK");
 		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value = "/boardIntegrated", method = RequestMethod.GET)
+	public void boardIntegrated(ModelMap model) throws Exception {
+		log.info("userIntegrated!!!");
+		List<UserVO> users = sampleService.userIntegrated();
+		model.addAttribute("list", users);
+	}
+	
+	@RequestMapping(value = "/boardHistory", method = RequestMethod.GET)
+	public void userHistory(@RequestParam("user_number") Integer user_number,  ModelMap model) throws Exception {
+		log.info("boardHistory!!!");
+		List<BoardVO> boards = sampleService.boardHistory(user_number);
+		model.addAttribute("list", boards);
 	}
 
 }
