@@ -34,10 +34,12 @@ public class SampleServiceImpl implements SampleService {
 	public void register(UserVO vo) throws Exception {
 		try {
 			sampleDAO.register(vo);
-			 BoardVO board = new BoardVO();
-			 board.setBoard_number(1);
-			 board.setTitle("transaction TEST222222");
-			 sampleDAO.BoardUpdate(board);
+			
+//			 BoardVO board = new BoardVO();
+//			 board.setBoard_number(1);
+//			 board.setTitle("transaction TEST222222");
+//			 sampleDAO.BoardUpdate(board);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception(); // Spring에 던져준다 (이거 있어야 rollback 처리됨)
@@ -86,9 +88,10 @@ public class SampleServiceImpl implements SampleService {
 		sampleDAO.BoardRegister(board);
 		
 		// transaction TEST
-		 board.setBoard_number(1);
-		 board.setTitle("transaction TEST333333");
-		 sampleDAO.BoardUpdate(board);
+		
+//		 board.setBoard_number(1);
+//		 board.setTitle("transaction TEST333333");
+//		 sampleDAO.BoardUpdate(board);
 	}
 
 	@Override
