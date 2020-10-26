@@ -93,7 +93,7 @@ public class BoardController {
 //		model.addAttribute("BoardVO", board);
 //		log.info(board.toString());
 		
-		if(userEqual == null) {
+		if(userEqual == null) {  // 비로그인 -> hist로 가지 않도록
 			BoardVO board = sampleService.read(board_number);
 			model.addAttribute("BoardVO", board);
 			log.info(board.toString());

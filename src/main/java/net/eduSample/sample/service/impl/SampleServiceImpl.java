@@ -28,14 +28,15 @@ public class SampleServiceImpl implements SampleService {
 	// aop TEST 메서드
 	// @Transactional(propagation = Propagation.REQUIRED,
 	// rollbackFor={Exception.class}) 적용됨
-	@Transactional(rollbackFor = { Exception.class })
+	
+//	@Transactional(rollbackFor = { Exception.class })
 	@Override
 	public void register(UserVO vo) throws Exception {
 		try {
 			sampleDAO.register(vo);
 			 BoardVO board = new BoardVO();
 			 board.setBoard_number(1);
-			 board.setTitle("transaction TEST");
+			 board.setTitle("transaction TEST222222");
 			 sampleDAO.BoardUpdate(board);
 		} catch (Exception e) {
 			e.printStackTrace();
