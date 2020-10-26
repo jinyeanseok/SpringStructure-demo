@@ -74,23 +74,51 @@ public class BoardController {
 			throws Exception {
 		// 페이지 목록 유지를 위해 사용되고 있는 page, perPageNum 값 가져오기
 		log.info("read GET!!!");
-		BoardVO board = sampleService.read(board_number);
+//		BoardVO board = sampleService.read(board_number);
+//
+		UserVO userEqual = (UserVO) session.getAttribute("user"); // 세션에 있는 값 확인용
+//		log.info("글 번호 : " + board_number);
+//		
+//		Integer key = user.getUser_number();
+//		
+//		// 로그인 안하고 글 읽으면 에러나기 때문에 key에 값이 없으면 hist table은 건너 뛰는걸로
+//		
+//		
+//		board.setUser_number(key);
+//		board.setComment("글 보기");
+//		board.setBoard_number(board_number);
+//		sampleService.read_hist(board);
+//		// setter로 board_number 값 보내주고
+//
+//		model.addAttribute("BoardVO", board);
+//		log.info(board.toString());
+		
+		if(userEqual == null) {
+			BoardVO board = sampleService.read(board_number);
+			model.addAttribute("BoardVO", board);
+			log.info(board.toString());
+		} else {
+			log.info("read GET!!!");
+			BoardVO board = sampleService.read(board_number);
 
-		UserVO user = (UserVO) session.getAttribute("user"); // hist table 용
-		log.info("글 번호 : " + board_number);
-		Integer key = user.getUser_number();
-		
-		// 로그인 안하고 글 읽으면 에러나기 때문에 key에 값이 없으면 hist table은 건너 뛰는걸로
-		
-		
-		board.setUser_number(key);
-		board.setComment("글 보기");
-		board.setBoard_number(board_number);
-		sampleService.read_hist(board);
-		// setter로 board_number 값 보내주고
+			UserVO user = (UserVO) session.getAttribute("user"); // hist table 용
+			log.info("글 번호 : " + board_number);
+			
+			Integer key = user.getUser_number();
+			
+			// 로그인 안하고 글 읽으면 에러나기 때문에 key에 값이 없으면 hist table은 건너 뛰는걸로
+			
+			
+			board.setUser_number(key);
+			board.setComment("글 보기");
+			board.setBoard_number(board_number);
+			sampleService.read_hist(board);
+			// setter로 board_number 값 보내주고
 
-		model.addAttribute("BoardVO", board);
-		log.info(board.toString());
+			model.addAttribute("BoardVO", board);
+			log.info(board.toString());
+		}
+		
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
