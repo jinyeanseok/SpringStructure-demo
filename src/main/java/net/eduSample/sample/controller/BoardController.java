@@ -83,7 +83,6 @@ public class BoardController {
 //		
 //		// 로그인 안하고 글 읽으면 에러나기 때문에 key에 값이 없으면 hist table은 건너 뛰는걸로
 //		
-//		
 //		board.setUser_number(key);
 //		board.setComment("글 보기");
 //		board.setBoard_number(board_number);
